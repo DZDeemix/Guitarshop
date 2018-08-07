@@ -1,0 +1,52 @@
+.tableadmin {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.inputadmin {
+    display: block;
+    padding: 0;
+    margin: 0;
+
+    width: 100%;
+}
+
+.td {margin: 0; padding: 0;}
+
+.vbottom {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}
+
+.active-gallery-item {
+    position: relative;
+}
+.active-gallery-item:hover .active-gallery-del {
+    display: flex;
+}
+
+.active-gallery-del {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 15px;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    background: rgba(0,0,0,.5);
+    cursor: pointer;
+}
+.allert {
+position: fixed;
+z-index: 99999;
+right: 0;
+}
+
+.word {
+word-break: break-all;
+    max-width:15%;
+}
