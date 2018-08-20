@@ -36,8 +36,8 @@
                 <div class="form-group row">
                     <label for="title" class="col-md-12 ">{{ __('Порядок') }}</label>
 
-                    <div class="col-md-12">
-                        <input id="title" type="text" class="form-control{{ $errors->has('number_id') ? ' is-invalid' : '' }}" name="number_id" value="{{ old('number_id') }} {{ $slidergallery->number_id }}" required autofocus>
+                    <div class="col-md-12 {{ $errors->has('number_id') ? ' has-error' : '' }}">
+                        <input id="title" type="text" class="form-control" name="number_id" value="{{ old('number_id') }} {{ $slidergallery->number_id }}" required autofocus>
 
 
                         @if ($errors->has('number_id'))
@@ -49,18 +49,19 @@
                 </div>
                 <div class="form-group row">
                     <label for="cover" class="col-md-11 ">Добавить обложку</label>
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         @if ($slidergallery->src_path)
                         <div class="col-md-4">
 
                             <img src="{{$pathdir . $slidergallery->src_path}}" class="img-thumbnail img-fluid">
                         </div>
                         @endif
-                        <input name="cover" type="file"  class="form-control" >
-
+                        <div class="{{ $errors->has('number_id') ? ' has-error' : '' }}">
+                            <input name="cover" type="file"  class="form-control" >
+                        </div>
                         @if ($errors->has('src_path'))
                         <span class="invalid-feedback">
-                                                    <strong>{{ $errors->first('cover') }}</strong>
+                                                    <strong>{{ $errors->first('src_path') }}</strong>
                                                 </span>
                         @endif
                     </div>

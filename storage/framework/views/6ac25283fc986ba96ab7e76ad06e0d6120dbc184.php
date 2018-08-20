@@ -1,3 +1,10 @@
+<?php $__env->startSection('Meta_property'); ?>
+    <?php if($page): ?>
+    <title><?php echo e($page->title); ?></title>
+    <meta name="keywords" content="<?php echo e($page->meta_key); ?>">
+    <meta name="description" content="<?php echo e($page->meta_description); ?>">
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
     <body class="products products-grid-3-columns single-product page about-us blog blog-masonry ">
     <?php $__env->stopSection(); ?>

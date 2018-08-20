@@ -28,19 +28,12 @@
 
                             <thead>
                             <tr class="something">
-                                {{--<th width="10%">Обложка</th>
-                                <th width="10%">Название</th>
-                                <th width="10%">Alias</th>
-                                <th width="10%">Дата создания</th>
-                                <th width="10%">Дата обновления</th>
-                                <th>Управление</th>--}}
                                 <th class="col-md-2" >Обложка</th>
                                 <th class="col-md-3" >Название</th>
                                 <th class="col-md-3" >Alias</th>
-                                <th class="col-md-1" >Создан</th>
+                                <th class="col-md-1" >Дата публикации</th>
                                 <th class="col-md-1" >Обновлён</th>
-                                <th class="col-md-1" >Control</th>
-
+                                <th class="col-md-1" >Управление</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,9 +41,13 @@
 
                                     <td></td>
                                     <td>
-                                            <input id="title" type="text" class="form-control inputadmin" name="title" value="{{ request()->title }}">
+                                        <input id="title" type="text" class="form-control inputadmin" name="title" value="{{ request()->title }}">
                                     </td>
-                                    <td  ><input  type="text" class="form-control inputadmin" name="alias" value="{{ request()->alias }}"></td>
+
+                                    <td>
+                                        <input  type="text" class="form-control inputadmin" name="alias" value="{{ request()->alias }}">
+                                    </td>
+
                                     <td></td>
                                     <td></td>
 
@@ -68,16 +65,15 @@
 
                                 <td>
                                     @if ($item->cover)
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 row-heigth">
                                                 <img src="/images/coves_posts/{{$item->cover}}" class="img-responsive">
                                         </div>
                                     @endif
                                 </td>
-                                <td>{{ $item->title }}</td>
-                                <td>{{ $item->alias }}</td>
-
-                                <td>{{ $item->created_utc }}</td>
-                                <td>{{ $item->updated_utc }}</td>
+                                <td><div class="row-heigth">{{ $item->title }}</div></td>
+                                <td><div class="row-heigth">{{ $item->alias }}</div></td>
+                                <td><div class="row-heigth">{{ date('d.m.Y H:i', $item->postdata) }}</div></td>
+                                <td><div class="row-heigth">{{ $item->updated_utc }}</div></td>
                                 <td class="center">
                                     <a href="{{route('admin_edit_post_show', ['alias' => $item->alias]) }}">
                                         <div class="edit-modal btn btn-info btn-block">

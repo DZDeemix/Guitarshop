@@ -1,35 +1,34 @@
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
 <head>
-    <base href="/Site/">
-    <meta charset="UTF-8">
-    <title>Products Grid 3 Columns</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @yield('Meta_property')
     <!-- Favicon-->
-    <link rel="shortcut icon" href="images/icon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/icon/favicon.png" type="image/x-icon">
 
     <!-- Web Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Roboto"; rel="stylesheet">
 
     <!-- Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="libs/animate/animated.css">
-    <link rel="stylesheet" type="text/css" href="libs/owl.carousel.min/owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="libs/jquery.mmenu.all/jquery.mmenu.all.css">
-    <link rel="stylesheet" type="text/css" href="libs/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" type="text/css" href="libs/direction/css/noJS.css">
-    <link rel="stylesheet" type="text/css" href="libs/prettyphoto-master/css/prettyPhoto.css">
-    <link rel="stylesheet" type="text/css" href="libs/slick-sider/slick.min.css">
-    <link rel="stylesheet" type="text/css" href="libs/countdown-timer/css/demo.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/animate/animated.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/owl.carousel.min/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/jquery.mmenu.all/jquery.mmenu.all.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/direction/css/noJS.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/prettyphoto-master/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/slick-sider/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="/Site/libs/countdown-timer/css/demo.css">
 
     <!-- Template CSS-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="/Site/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/Site/css/home.css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
@@ -69,12 +68,12 @@
 
                     <div class="header-right">
                         <div class="search-button-wrapper header-customize-item style-default">
-                            <div class="icon-search-menu"><i class="wicon fa fa-search"></i></div>
-                            <div class="yolo-search-wrapper">
-                                <input placeholder="Enter keyword to search" type="search"/>
-                                <button class="search"><i class="fa fa-search"></i></button>
-                                <button class="close"><i class="pe-7s-close"></i></button>
-                            </div>
+                            <form action="{{ route('search') }}" autocomplete="off">
+                                <div class="{{ $errors->has('s') ? 'has-error' : '' }}">
+                                    <input type="text"   name="s" placeholder="{{ $errors->has('s') ? 'поле обязательно' : 'найти' }}">
+                                    <input type="submit" class="search" value="&#xf002;" />
+                                </div>
+                            </form>
                         </div>
 
                         <div class="header-customize-item canvas-menu-toggle-wrapper"></div>
@@ -141,25 +140,28 @@
 </div>
 
 <!-- Vendor jQuery-->
-<script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="libs/animate/wow.min.js"></script>
-<script type="text/javascript" src="libs/jquery.mmenu.all/jquery.mmenu.all.min.js"></script>
-<script type="text/javascript" src="libs/countdown/jquery.countdown.min.js"></script>
-<script type="text/javascript" src="libs/jquery-appear/jquery.appear.min.js"></script>
-<script type="text/javascript" src="libs/jquery-countto/jquery.countTo.min.js"></script>
-<script type="text/javascript" src="libs/direction/js/jquery.hoverdir.js"></script>
-<script type="text/javascript" src="libs/direction/js/modernizr.custom.97074.js"></script>
-<script type="text/javascript" src="libs/isotope/isotope.pkgd.min.js"></script>
-<script type="text/javascript" src="libs/isotope/fit-columns.js"></script>
-<script type="text/javascript" src="libs/isotope/isotope-docs.min.js"></script>
-<script type="text/javascript" src="libs/mansory/mansory.js"></script>
-<script type="text/javascript" src="libs/prettyphoto-master/js/jquery.prettyPhoto.js"></script>
-<script type="text/javascript" src="libs/slick-sider/slick.min.js"></script>
-<script type="text/javascript" src="libs/countdown-timer/js/jquery.final-countdown.min.js"></script>
-<script type="text/javascript" src="libs/countdown-timer/js/kinetic.js"></script>
-<script type="text/javascript" src="libs/owl.carousel.min/owl.carousel.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="/Site/libs/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/Site/libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/Site/libs/animate/wow.min.js"></script>
+<script type="text/javascript" src="/Site/libs/jquery.mmenu.all/jquery.mmenu.all.min.js"></script>
+<script type="text/javascript" src="/Site/libs/countdown/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="/Site/libs/jquery-appear/jquery.appear.min.js"></script>
+<script type="text/javascript" src="/Site/libs/jquery-countto/jquery.countTo.min.js"></script>
+<script type="text/javascript" src="/Site/libs/direction/js/jquery.hoverdir.js"></script>
+<script type="text/javascript" src="/Site/libs/direction/js/modernizr.custom.97074.js"></script>
+<script type="text/javascript" src="/Site/libs/isotope/isotope.pkgd.min.js"></script>
+{{--<script type="text/javascript" src="/Site/libs/isotope/fit-columns.js"></script>
+<script type="text/javascript" src="/Site/libs/isotope/isotope-docs.min.js"></script>--}}
+<script type="text/javascript" src="/Site/libs/mansory/mansory.js"></script>
+<script type="text/javascript" src="/Site/libs/prettyphoto-master/js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="/Site/libs/slick-sider/slick.min.js"></script>
+<script type="text/javascript" src="/Site/libs/countdown-timer/js/jquery.final-countdown.min.js"></script>
+<script type="text/javascript" src="/Site/libs/countdown-timer/js/kinetic.js"></script>
+<script type="text/javascript" src="/Site/libs/owl.carousel.min/owl.carousel.min.js"></script>
+
+<script type="text/javascript" src="/Site/js/main.js"></script>
+
+
 @yield('create-order')
 
 

@@ -1,4 +1,11 @@
 @extends('layouts.site')
+@section('Meta_property')
+    @if($page)
+        <title>{{ $page->title }}</title>
+        <meta name="keywords" content="{{$page->meta_key}}">
+        <meta name="description" content="{{$page->meta_description}}">
+    @endif
+@endsection
 @section('body')
     <body class="products products-grid-3-columns single-product page about-us ">
     @endsection

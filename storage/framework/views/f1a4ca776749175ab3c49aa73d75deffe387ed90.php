@@ -37,17 +37,15 @@
 
                             <td></td>
                             <td>
-
-
                                 <input id="title" type="text" class="form-control inputadmin" name="title" value="<?php echo e(request()->title); ?>">
-
                             </td>
-                            <td  ><input  type="text" class="form-control inputadmin" name="alias" value="<?php echo e(request()->alias); ?>"></td>
+                            <td><input  type="text" class="form-control inputadmin" name="alias" value="<?php echo e(request()->alias); ?>"></td>
                             <td></td>
                             <td></td>
 
-                            <td><button type="submit" class="btn btn-primary btn-block"><?php echo e(__('Filter')); ?></button>
-                                <a href="<?php echo e(route('admin_posts_show')); ?>">
+                            <td>
+                                <button type="submit" class="btn btn-primary btn-block"><?php echo e(__('Filter')); ?></button>
+                                <a href="<?php echo e(route('admin_products_show')); ?>">
                                     <div class="delete-modal btn btn-danger btn-block">
                                         <span class="glyphicon glyphicon-trash">Сброс</span>
                                     </div>
@@ -58,30 +56,31 @@
                         <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr class="odd gradeX">
                             <td>
-                                <?php if($item->cover): ?>
-                                    <div class="col-md-12">
-                                        <img src="/images/cover_products/<?php echo e($item->cover); ?>" class="img-responsive">
-                                    </div>
-                                <?php endif; ?>
+                                <div class="row-heigth">
+                                    <?php if($item->cover): ?>
+                                        <div class="col-md-12">
+                                            <img src="/images/cover_products/<?php echo e($item->cover); ?>" class="img-responsive">
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
                             </td>
-                            <td><?php echo e($item->title); ?></td>
-                            <td><?php echo e($item->alias); ?></td>
-                            <td><?php echo e($item->created_utc); ?>
-
-                            </td>
-                            <td><?php echo e($item->updated_utc); ?></td>
+                            <td><div class="row-heigth"><?php echo e($item->title); ?></div></td>
+                            <td><div class="row-heigth"><?php echo e($item->alias); ?></div></td>
+                            <td><div class="row-heigth"><?php echo e($item->created_utc); ?></div></td>
+                            <td><div class="row-heigth"><?php echo e($item->updated_utc); ?></div></td>
                             <td class="center">
-                                <a href="<?php echo e(route('admin_edit_product_show', ['alias' => $item->alias])); ?>">
-                                    <div class="edit-modal btn btn-info btn-block">
-                                        <span class="glyphicon glyphicon-edit">Edit</span>
-                                    </div>
-                                </a>
-                                <a href="<?php echo e(route('admin_delete_product', ['alias' => $item->alias])); ?>">
-                                    <div class="delete-modal btn btn-danger btn-block">
-                                        <span class="glyphicon glyphicon-trash">Delete</span>
-                                    </div>
-                                </a>
-
+                                <div class="row-heigth">
+                                    <a href="<?php echo e(route('admin_edit_product_show', ['alias' => $item->alias])); ?>">
+                                        <div class="edit-modal btn btn-info btn-block">
+                                            <span class="glyphicon glyphicon-edit">Edit</span>
+                                        </div>
+                                    </a>
+                                    <a href="<?php echo e(route('admin_delete_product', ['alias' => $item->alias])); ?>">
+                                        <div class="delete-modal btn btn-danger btn-block">
+                                            <span class="glyphicon glyphicon-trash">Delete</span>
+                                        </div>
+                                    </a>
+                                </div>
                             </td>
 
                         </tr>

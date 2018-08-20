@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">{{ $big_title }}</h1>
+            <h1 class="page-header">{{ $post->big_title }}</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -31,14 +31,14 @@
                     <div class="card-header"></div>
 
                     <div class="card-body">
-                        <form method="POST"    action="{{ route($submint_action, $param) }}" enctype="multipart/form-data">
+                        <form method="POST"    action="{{ route($post->submint_action, $post->param) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="title" class="col-md-2 ">{{ __('Заголовок') }}</label>
 
-                                <div class="col-md-9">
-                                    <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }} {{ $post->title }}" required autofocus>
-                                    <input name="alias" id="alias" type="hidden" value="{{ old('alias') }} {{ $post->alias}}" required>
+                                <div class="col-md-10 {{ $errors->has('title') ? 'has-error' : '' }}">
+                                    <input id="title" type="text" class="form-control" name="title" value="{{ !$post->title ? old('title') : $post->title }}" required autofocus>
+                                    <input name="alias" id="alias" type="hidden" value="{{ !$post->alias ? old('alias') : $post->alias}}" required>
 
                                     @if ($errors->has('title'))
                                         <span class="invalid-feedback">
@@ -51,8 +51,8 @@
                             <div class="form-group row">
                                 <label for="meta_key" class="col-md-2 ">{{ __('Метаключи') }}</label>
 
-                                <div class="col-md-9">
-                                    <input id="meta_key" type="text" class="form-control{{ $errors->has('meta_key') ? ' is-invalid' : '' }}" name="meta_key" value="{{ old('meta_key') }} {{ $post->meta_key }}" required autofocus>
+                                <div class="col-md-10 {{ $errors->has('meta_key') ? 'has-error' : '' }}">
+                                    <input id="meta_key" type="text" class="form-control" name="meta_key" value="{{ !$post->meta_key ? old('meta_key') : $post->meta_key }}" required autofocus>
 
                                     @if ($errors->has('meta_key'))
                                         <span class="invalid-feedback">
@@ -65,8 +65,8 @@
                             <div class="form-group row">
                                 <label for="title" class="col-md-2">{{ __('Мета-описание') }}</label>
 
-                                <div class="col-md-9">
-                                    <input id="meta_description" type="text" class="form-control{{ $errors->has('meta_description') ? ' is-invalid' : '' }}" name="meta_description" value="{{ old('meta_description') }}{{ $post->meta_description }}" required autofocus>
+                                <div class="col-md-10 {{ $errors->has('meta_description') ? 'has-error' : '' }}">
+                                    <input id="meta_description" type="text" class="form-control" name="meta_description" value="{{ !$post->meta_description ? old('meta_description') : $post->meta_description }}" required autofocus>
 
                                     @if ($errors->has('meta_description'))
                                         <span class="invalid-feedback">
@@ -78,28 +78,43 @@
 
 
                             <div class="form-group row">
-                                <label for="cover" class="col-md-11 ">Добавить обложку</label>
-                                <div class="col-md-11">
+                                <label for="cover" class="col-md-12 ">Добавить обложку</label>
+                                <div class="col-md-12">
                                     @if ($post->cover)
                                         <div class="col-md-4">
-
                                             <img src="/images/coves_posts/{{$post->cover}}" class="img-thumbnail img-fluid">
                                         </div>
                                     @endif
+
                                         <input name="cover" type="file"  class="form-control" >
 
                                     @if ($errors->has('cover'))
                                         <span class="invalid-feedback">
-                                                    <strong>{{ $errors->first('cover') }}</strong>
-                                                </span>
+                                            <strong>{{ $errors->first('cover') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="_content" class="col-md-11 ">Текст статьи</label>
-                                <div class="col-md-11">
-                                    <textarea id="content" name="_content" class="form-control my-editor" rows="10" >{!!old('_content')  !!}  {!!$post->content!!}</textarea>
+                                <label for="_content" class="col-md-12">Дата и время публикации поста. Время на сервере: {{ date('H:i', time()) }}</label>
+                                <div class="col-md-12">
+                                    <div class="input-group date" id="datetimepicker1">
+                                        <span class="input-group-addon datepickerbutton">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input name="postdata" type="text" class="form-control" value="{{!(date('d.m.Y H:i', $post->postdata)) ?  date('d.m.Y H:i', old('postdata')) : date('d.m.Y H:i', $post->postdata)}}"/>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="_content" class="col-md-12 ">Текст статьи</label>
+                                <div class="col-md-12">
+                                    <textarea id="content" name="_content" class="form-control my-editor" rows="10" >{!! !$post->content ? old('_content')  : $post->content!!}</textarea>
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
@@ -157,6 +172,21 @@
         };
 
         tinymce.init(editor_config);
+    </script>
+    <!-- 4. Подключить библиотеку moment -->
+    <script src="/admin_site/vendor/moment-locale/moment.js"></script>
+
+    <!-- 6. Подключить js-файл библиотеки Bootstrap 3 DateTimePicker -->
+    <script src="/admin_site/vendor/DateTimePicker/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+        $(function () {
+            // идентификатор элемента (например: #datetimepicker1), для которого необходимо инициализировать виджет Bootstrap DateTimePicker
+            $('#datetimepicker1').datetimepicker({
+                locale: 'ru',
+
+            });
+        });
     </script>
     @endpush
 

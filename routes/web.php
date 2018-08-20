@@ -29,7 +29,9 @@ Route::get('/blog', ['uses'=>'PostController@get_post', 'as'=>'all_posts']);
 Route::get('/order/new_order_show', ['uses'=>'OrderController@new_order_show', 'as'=>'new_order_show']);
 Route::post('/order/new_order/', ['uses'=>'OrderController@new_order', 'as'=>'new_order']);
 
-
+//Марщруты для нового заказа
+Route::get('/search{s?}', ['uses'=>'SearchController@search', 'as'=>'search']);
+Route::post('autocomplite', ['uses'=>'SearchController@autocomplite', 'as'=>'autocomplite']);
 
 
 
@@ -60,6 +62,8 @@ Route::group(['prefix'=>'admin','middleware'=>['web','auth']], function (){
     //Маршруты для заказов
     Route::get('/orders/show', ['uses'=>'Admin\AdminOrderController@show_orders', 'as'=>'admin_show_orders']);
     Route::post('/order/change_status/{id}', ['uses'=>'Admin\AdminOrderController@change_status', 'as'=>'admin_change_status_order']);
+    Route::get('/order/edit/{id}', ['uses'=>'Admin\AdminOrderController@show_editorder', 'as'=>'admin_edit_order_show']);
+    Route::post('/order/edit/{id}', ['uses'=>'Admin\AdminOrderController@editorder', 'as'=>'admin_edit_order']);
 
     //Маршруты для настроек
     Route::get('/settings/show', ['uses'=>'Admin\AdminSettingsController@show', 'as'=>'admin_show_settings']);
@@ -72,4 +76,8 @@ Route::group(['prefix'=>'admin','middleware'=>['web','auth']], function (){
 
     //Маршруты для гостевой книги
     Route::get('/guests/show', ['uses'=>'Admin\AdminGuestController@show', 'as'=>'admin_show_guests']);
+
+    //Маршруты для настройки страниц
+    Route::get('/pages/show/{id}', ['uses'=>'Admin\AdminPageController@show', 'as'=>'admin_show_page']);
+    Route::post('/pages/change/{id}', ['uses'=>'Admin\AdminPageController@change', 'as'=>'admin_change_page']);
 });

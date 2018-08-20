@@ -27,10 +27,9 @@
     <!-- DataTables Responsive CSS -->
     <link href="/admin_site/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    
-    <!-- dropzone CSS -->
-    
+    <!-- DateTimePicker -->
+    <link href="/admin_site/vendor/DateTimePicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="/admin_site/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/admin_site/mycss.css" rel="stylesheet">
@@ -83,17 +82,7 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
+
 
 
 
@@ -121,6 +110,25 @@
                             </li>
                             <li>
                                 <a href="/admin/products/show"><i class="fa fa-table fa-fw"></i>Список товаров</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#">Настройки страниц<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo e(route('admin_show_page', ['id' => 1])); ?>"><i class="fa fa-edit fa-fw"></i>Главная</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo e(route('admin_show_page', ['id' => 2])); ?>"><i class="fa fa-table fa-fw"></i>Страница товаров</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo e(route('admin_show_page', ['id' => 3])); ?>"><i class="fa fa-table fa-fw"></i>Страница постов</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo e(route('admin_show_page', ['id' => 4])); ?>"><i class="fa fa-table fa-fw"></i>Страница о нас</a>
                             </li>
 
                         </ul>

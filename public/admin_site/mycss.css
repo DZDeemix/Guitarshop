@@ -47,6 +47,24 @@ right: 0;
 }
 
 .word {
-word-break: break-all;
-    max-width:15%;
+      word-break: break-all;
+      width:30%;
+}
+
+.minwidth {
+    width:13%;
+}
+
+.row-heigth {
+    height:230px;
+    overflow:hidden;
+}
+
+
+
+.bloc select {
+    margin-right: 10px;
+    overflow-y: auto;
+    text-align: left;
+    width: 100%;
 }

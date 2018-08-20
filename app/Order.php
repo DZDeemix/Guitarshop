@@ -13,10 +13,11 @@ class Order extends BaseModel
         'Отказ',
         'Возврат'
     ];
-    protected $appends = [
-        'created_utc',
-        'updated_utc',
-    ];
+
+    protected $fillable = [
+        'content','status','prod_coment', 'product_id', 'guest_id'];
+
+
     public function guest()
     {
         return $this->belongsTo('App\Guest','guest_id');
@@ -25,13 +26,5 @@ class Order extends BaseModel
     {
         return $this->belongsTo('App\Product','product_id');
     }
-    public function getCreatedUtcAttribute()
-    {
-        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->getOriginal('created_at'))->timezone($this->timeZone)->format('d-m-y H:i:s');
-    }
 
-    public function getUpdatedUtcAttribute()
-    {
-        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->getOriginal('updated_at'))->timezone($this->timeZone)->format('d-m-y H:i:s');
-    }
 }

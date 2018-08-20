@@ -1,6 +1,28 @@
+<?php
+
+$metaURL = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$imgURL = 'http://'.$_SERVER['HTTP_HOST'] . '/public/images/coves_posts/' . $data->cover;
+
+?>
+
+
+<?php $__env->startSection('Meta_property'); ?>
+    <?php if($data): ?>
+    <title><?php echo e($data->title); ?></title>
+    <meta name="keywords" content="<?php echo e($data->meta_key); ?>">
+    <meta name="description" content="<?php echo e($data->meta_description); ?>">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="<?= $metaURL ?>">
+    <meta property="og:title" content="<?php echo e($data->title); ?>">
+    <meta property="og:description" content="<?php echo e($data->meta_description); ?>">
+    <meta property="og:image" content="<?= $imgURL ?>">
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('body'); ?>
-    <body class="products products-grid-3-columns single-product page about-us blog blog-masonry blog-detail ">
-    <?php $__env->stopSection(); ?>
+    <body class="products products-grid-3-columns single-product page about-us blog blog-masonry blog-detail">
+
+<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 <div id="example-wrapper">
@@ -21,8 +43,8 @@
                                                     <span class="post-month"><?php echo e(config('GS.month')[(date("n", strtotime ($data->created_utc))-1)]); ?> </span>
                                                 </div>
                                             </div>
-                                            <div class="entry-thumbnail-wrap absolute-center" style="height:500px; background-image: url( '<?php echo e('/images/coves_posts/' . $data->cover); ?>' );">
-
+                                            <div class="item">
+                                                <figure><img src="<?php echo e($data->pathdircover . $data->cover); ?>" alt="slide" width="1080" height="768" class=""/></figure>
                                             </div>
                                         </div>
                                         <div class="entry-content-wrap">
@@ -36,19 +58,14 @@
 
 
                                                 <div class="entry-meta-tag-list">
-                                                    <div class="entry-meta-tag">
-                                                        <label><i class="fa fa-tags"></i>Tags :</label><a href="#">Plant Care</a><a href="#">Plant Of The Month</a>
-                                                    </div>
                                                     <div class="entry-meta-tag-right">
                                                         <div class="social-share-wrap">
                                                             <label><i class="fa fa-share-alt"></i>Share:</label>
                                                             <ul class="social-share">
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                                                <li><a href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($metaURL) ?>"><i class="fa fa-facebook"></i></a></li>
+                                                                <li><a href="https://twitter.com/share?url=<?= urlencode($metaURL) ?>"><i class="fa fa-twitter"></i></a></li>
+                                                                <li><a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl=<?= urlencode($metaURL) ?>&st.comments=<?php echo e($data->title); ?>"><i class="fa fa-odnoklassniki"></i></a></li>
+                                                                <li><a href="http://vk.com/share.php?url=<?= urlencode($metaURL) ?>"><i class="fa fa-vk"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>

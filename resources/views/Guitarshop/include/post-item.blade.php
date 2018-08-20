@@ -11,22 +11,16 @@
                     </div>
                     <div>
                         <a href="{{ route('post_show',['alias' => $item->alias]) }}" >
-                        <div  class="absolute-center absolute-center-posts img-responsive" style="background-image: url( '{{ '/images/coves_posts/' . $item->cover }}')" >
+                        <div  class="absolute-center absolute-center-posts img-responsive" style="background-image: url( '{{ $item->pathdircover . $item->cover }}')" >
                         </div>
                         </a>
-
                     </div>
                 </div>
                 <div class="entry-content-wrap">
                     <div class="entry-detail">
                         <h3 class="entry-title"><a href=" {{ route('post_show',['alias' => $item->alias]) }}">{{$item->title}}</a></h3>
-
                         <div class="entry-excerpt">
-
                             <p>{!! substr(strip_tags($item->content),0,100) . "..." !!}</p>
-                        </div>
-                        <div class="entry-meta-tag">
-                            <label><i class="fa fa-tags"></i>Tags :</label><a href="#">Plant Care</a><a href="#">Plant Of The Month</a>
                         </div>
                         <a href="{{ route('post_show',['alias' => $item->alias]) }}" class="btn-readmore">
                             <span class="span-text">Читать

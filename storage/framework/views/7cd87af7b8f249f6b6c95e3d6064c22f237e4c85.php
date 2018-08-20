@@ -32,17 +32,14 @@
             <div class="card-body">
                 <form method="POST"    action="<?php echo e(route('admin_change_settings')); ?>" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
-
-
-
                     <div class="form-group row">
                         <label for="title" class="col-md-12 "><?php echo e(__('Количество постов на одной странице в панели администратора')); ?></label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="paginatoin_admin" value="<?php echo e(old('paginatoin_admin')); ?> <?php echo e($setting->paginatoin_admin); ?>" >
-                            <?php if($errors->has('title')): ?>
+                        <div class="col-md-12 <?php echo e($errors->has('paginatoin_admin') ? ' has-error' : ''); ?>">
+                            <input  type="text" class="form-control" name="paginatoin_admin" value="<?php echo e($setting->paginatoin_admin); ?>" >
+                            <?php if($errors->has('paginatoin_admin')): ?>
                                 <span class="invalid-feedback">
-                                    <strong><?php echo e($errors->first('title')); ?></strong>
+                                    <strong><?php echo e($errors->first('paginatoin_admin')); ?></strong>
                                 </span>
                             <?php endif; ?>
                         </div>
@@ -51,11 +48,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 "><?php echo e(__('Количество товаров на одной странице в панели администратора')); ?></label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="paginatoin_admin_product" value="<?php echo e(old('paginatoin_admin_product')); ?> <?php echo e($setting->paginatoin_admin_product); ?>" >
-                            <?php if($errors->has('title')): ?>
+                        <div class="col-md-12 <?php echo e($errors->has('paginatoin_admin_product') ? ' has-error' : ''); ?>">
+                            <input  type="text" class="form-control" name="paginatoin_admin_product" value="<?php echo e($setting->paginatoin_admin_product); ?>" >
+                            <?php if($errors->has('paginatoin_admin_product')): ?>
                                 <span class="invalid-feedback">
-                                        <strong><?php echo e($errors->first('title')); ?></strong>
+                                        <strong><?php echo e($errors->first('paginatoin_admin_product')); ?></strong>
                                     </span>
                             <?php endif; ?>
                         </div>
@@ -64,11 +61,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 "><?php echo e(__('Количество постов на одной странице сайта')); ?></label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="paginatoin_site" value="<?php echo e(old('paginatoin_site')); ?> <?php echo e($setting->paginatoin_site); ?>" >
-                            <?php if($errors->has('title')): ?>
+                        <div class="col-md-12 <?php echo e($errors->has('paginatoin_site') ? ' has-error' : ''); ?>">
+                            <input  type="text" class="form-control" name="paginatoin_site" value="<?php echo e($setting->paginatoin_site); ?>" >
+                            <?php if($errors->has('paginatoin_site')): ?>
                                 <span class="invalid-feedback">
-                                    <strong><?php echo e($errors->first('title')); ?></strong>
+                                    <strong><?php echo e($errors->first('paginatoin_site')); ?></strong>
                                 </span>
                             <?php endif; ?>
                         </div>
@@ -76,11 +73,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 "><?php echo e(__('Количество товаров на одной странице сайта')); ?></label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="paginatoin_site_product" value="<?php echo e(old('paginatoin_site_product')); ?> <?php echo e($setting->paginatoin_site_product); ?>" >
-                            <?php if($errors->has('title')): ?>
+                        <div class="col-md-12 <?php echo e($errors->has('paginatoin_site_product') ? ' has-error' : ''); ?>">
+                            <input  type="text" class="form-control" name="paginatoin_site_product" value="<?php echo e($setting->paginatoin_site_product); ?>" >
+                            <?php if($errors->has('paginatoin_site_product')): ?>
                                 <span class="invalid-feedback">
-                                    <strong><?php echo e($errors->first('title')); ?></strong>
+                                    <strong><?php echo e($errors->first('paginatoin_site_product')); ?></strong>
                                 </span>
                             <?php endif; ?>
                         </div>
@@ -89,11 +86,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 "><?php echo e(__('Количество постов на главной странице')); ?></label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="paginatoin_site_onMain" value="<?php echo e(old('paginatoin_site_onMain')); ?> <?php echo e($setting->paginatoin_site_onMain); ?>" >
-                            <?php if($errors->has('title')): ?>
+                        <div class="col-md-12 <?php echo e($errors->has('paginatoin_site_onMain') ? ' has-error' : ''); ?>">
+                            <input  type="text" class="form-control" name="paginatoin_site_onMain" value="<?php echo e($setting->paginatoin_site_onMain); ?>" >
+                            <?php if($errors->has('paginatoin_site_onMain')): ?>
                                 <span class="invalid-feedback">
-                                    <strong><?php echo e($errors->first('title')); ?></strong>
+                                    <strong><?php echo e($errors->first('paginatoin_site_onMain')); ?></strong>
                                 </span>
                             <?php endif; ?>
                         </div>
@@ -101,11 +98,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 "><?php echo e(__('Количество товаров на главной странице')); ?></label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="paginatoin_site_onMain_products" value="<?php echo e(old('paginatoin_site_onMain_products')); ?> <?php echo e($setting->paginatoin_site_onMain_products); ?>" >
-                            <?php if($errors->has('title')): ?>
+                        <div class="col-md-12 <?php echo e($errors->has('paginatoin_site_onMain_products') ? ' has-error' : ''); ?>">
+                            <input  type="text" class="form-control" name="paginatoin_site_onMain_products" value="<?php echo e($setting->paginatoin_site_onMain_products); ?>" >
+                            <?php if($errors->has('paginatoin_site_onMain_products')): ?>
                                 <span class="invalid-feedback">
-                                    <strong><?php echo e($errors->first('title')); ?></strong>
+                                    <strong><?php echo e($errors->first('paginatoin_site_onMain_products')); ?></strong>
                                 </span>
                             <?php endif; ?>
                         </div>
@@ -114,11 +111,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 "><?php echo e(__('Email адрес')); ?></label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="email" value="<?php echo e(old('email')); ?> <?php echo e($setting->email); ?>" >
-                            <?php if($errors->has('title')): ?>
+                        <div class="col-md-12 <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                            <input  type="text" class="form-control" name="email" value="<?php echo e($setting->email); ?>" >
+                            <?php if($errors->has('email')): ?>
                                 <span class="invalid-feedback">
-                                    <strong><?php echo e($errors->first('title')); ?></strong>
+                                    <strong><?php echo e($errors->first('email')); ?></strong>
                                 </span>
                             <?php endif; ?>
                         </div>
@@ -128,8 +125,8 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 "><?php echo e(__('Email адрес для заказов')); ?></label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control<?php echo e($errors->has('email_send1') ? ' is-invalid' : ''); ?>" name="email_send1" value="<?php echo e(old('email_send1')); ?> <?php echo e($setting->email_send1); ?>" >
+                        <div class="col-md-12 <?php echo e($errors->has('email_send1') ? ' has-error' : ''); ?>">
+                            <input  type="text" class="form-control" name="email_send1" value="<?php echo e($setting->email_send1); ?>" >
                             <?php if($errors->has('email_send1')): ?>
                                 <span class="invalid-feedback">
                                     <strong><?php echo e($errors->first('email_send1')); ?></strong>

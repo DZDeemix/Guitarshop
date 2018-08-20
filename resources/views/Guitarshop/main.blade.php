@@ -3,11 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PVB гитары</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @if($page)
+    <title>{{ $page->title }}</title>
+    <meta name="keywords" content="{{$page->meta_key}}">
+    <meta name="description" content="{{$page->meta_description}}">
+    @endif
     <!-- Favicon-->
     <link rel="shortcut icon" href="images/icon/favicon.png" type="image/x-icon">
 
@@ -55,9 +57,11 @@
                     <div class="search-button-wrapper header-customize-item style-default">
                         <div class="icon-search-menu"><i class="wicon fa fa-search"></i></div>
                         <div class="yolo-search-wrapper">
-                            <input id="search-ajax" placeholder="Enter keyword to search" type="search"/>
-                            <button class="search"><i class="fa fa-search"></i></button>
-                            <button class="close"><i class="pe-7s-close"></i></button>
+                            <form action="{{ route('search') }}" autocomplete="off">
+                                <input id="search-ajax" placeholder="Enter keyword to search" type="search"  name="s"/>
+                                <button class="submit"><i class="fa fa-search"></i></button>
+                                <button class="close"><i class="pe-7s-close"></i></button>
+                            </form>>
                         </div>
                     </div>
 

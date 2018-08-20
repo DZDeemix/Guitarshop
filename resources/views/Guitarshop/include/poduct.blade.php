@@ -10,7 +10,7 @@
                         <span class="on-new product-flash">Sold</span>
                     @endif
                 </div>
-                <div class="product-thumb-primary absolute-center absolute-center-products" style="background-image: url( '{{ '/images/cover_products/' . $item->cover }}' );">
+                <div class="product-thumb-primary absolute-center absolute-center-products" style="background-image: url( '{{ $item->pathdircover .  $item->cover }}' );">
                     {{--<img src="{{ "/images/cover_products/" . $item->cover }}" alt="product1"  class="attachment-shop_catalog size-shop_catalog wp-post-image"/>--}}
                     {{--width="375" height="450"--}}
                 </div>

@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseModel extends Model
 {
-    public  $timeZone = "Europe/Moscow";
+    public  $timeZone = "Europe/Samara";
+    protected $appends = [
+        'created_utc',
+        'updated_utc',
+    ];
 
     public  function deletefile ($filename)
     {
@@ -52,5 +56,14 @@ class BaseModel extends Model
             return $src_path;
         }
 
+    }
+    public function getCreatedUtcAttribute()
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->getOriginal('created_at'))->timezone($this->timeZone)->format('d.m.Y H:i:s');
+    }
+
+    public function getUpdatedUtcAttribute()
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->getOriginal('updated_at'))->timezone($this->timeZone)->format('d.m.Y H:i:s');
     }
 }

@@ -22,9 +22,8 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">{{ $big_title }}</h1>
+            <h1 class="page-header">{{ $product->big_title }}</h1>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
 
             <div class="cbf">
@@ -32,18 +31,18 @@
                     <div class="card-header"></div>
 
                     <div class="card-body">
-                        <form method="POST"    action="{{ route($submint_action, $param) }}" enctype="multipart/form-data">
+                        <form method="POST"    action="{{ route($product->submint_action, $product->param) }}" enctype="multipart/form-data">
                             <div class="product-wrapper">
                             @csrf
 
 
 
                             <div class="form-group row">
-                                <label for="title" class="col-md-2 ">{{ __('Заголовок') }}</label>
+                                <label for="title" class="col-md-2 ">{{ __('Название товара') }}</label>
 
-                                <div class="col-md-9">
-                                    <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }} {{ $product->title}}" required autofocus>
-                                    <input name="alias" id="alias" type="hidden" value="{{ old('alias') }} {{ $product->alias}}" required>
+                                <div class="col-md-10 {{ $errors->has('title') ? 'has-error' : '' }}">
+                                    <input id="title" type="text" class="form-control" name="title" value="{{!$product->title ?  old('title') : $product->title}}" required autofocus>
+                                    <input name="alias" id="alias" type="hidden" value="{{!$product->alias ? old('alias') : $product->alias}}" required>
 
                                     @if ($errors->has('title'))
                                         <span class="invalid-feedback text-danger">
@@ -56,8 +55,8 @@
                             <div class="form-group row">
                                 <label for="meta_key" class="col-md-2 ">{{ __('Метаключи') }}</label>
 
-                                <div class="col-md-9">
-                                    <input id="meta_key" type="text" class="form-control{{ $errors->has('meta_key') ? ' is-invalid' : '' }}" name="meta_key" value="{{ old('meta_key') }} {{ $product->meta_key}}" required autofocus>
+                                <div class="col-md-10 {{ $errors->has('meta_key') ? 'has-error' : '' }}">
+                                    <input id="meta_key" type="text" class="form-control" name="meta_key" value="{{ !$product->meta_key ? old('meta_key'): $product->meta_key}}" required autofocus>
 
                                     @if ($errors->has('meta_key'))
                                         <span class="invalid-feedback text-danger">
@@ -70,8 +69,8 @@
                             <div class="form-group row">
                                 <label for="title" class="col-md-2">{{ __('Мета-описание') }}</label>
 
-                                <div class="col-md-9">
-                                    <input id="meta_description" type="text" class="form-control{{ $errors->has('meta_description') ? ' is-invalid' : '' }}" name="meta_description" value="{{ old('meta_description') }} {{ $product->meta_description}}" required autofocus>
+                                <div class="col-md-10 {{ $errors->has('meta_description') ? 'has-error' : '' }}">
+                                    <input id="meta_description" type="text" class="form-control" name="meta_description" value="{{ !$product->meta_description ? old('meta_description') : $product->meta_description}}" required autofocus>
 
                                     @if ($errors->has('meta_description'))
                                         <span class="invalid-feedback text-danger">
@@ -84,8 +83,8 @@
                             <div class="form-group row">
                                 <label for="price" class="col-md-2 ">{{ __('Цена') }}</label>
 
-                                <div class="col-md-9">
-                                    <input id="price" type="text" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ old('price') }} {{ $product->price}}" required autofocus>
+                                <div class="col-md-10 {{ $errors->has('price') ? 'has-error' : '' }}">
+                                    <input id="price" type="text" class="form-control" name="price" value="{{ !$product->price ? old('price') :  $product->price }} " >
 
                                     @if ($errors->has('price'))
                                         <span class="invalid-feedback text-danger">
@@ -100,7 +99,6 @@
                             <div class="form-group col-md-5 vbottom">
                                 @if ($product->cover)
                                     <div>
-
                                         <img src="/images/cover_products/{{$product->cover}}" class="img-thumbnail img-fluid">
                                     </div>
                                 @endif
@@ -109,20 +107,20 @@
                                     <input name="cover"  type="file"  class="form-control">
                                     @if ($errors->has('cover'))
                                         <span class="invalid-feedback text-danger">
-                                                    <strong>{{ $errors->first('cover') }}</strong>
-                                                </span>
+                                            <strong>{{ $errors->first('cover') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
                             <div class="form-group col-md-6 vbottom ">
                                 @if ($product->gallery)
                                     @foreach($product->gallery as $item)
-                                    <div class="col-md-3 active-gallery-item">
-                                        <span data-id="{{$item->id}}" class="active-gallery-del">
-                                            <i class="fa fa-trash fa-2x"></i>
-                                        </span>
-                                        <img src="/images/gallery_products/{{$item->src_path}}" class="img-thumbnail img-fluid">
-                                    </div>
+                                        <div class="col-md-3 active-gallery-item">
+                                            <span data-id="{{$item->id}}" class="active-gallery-del">
+                                                <i class="fa fa-trash fa-2x"></i>
+                                            </span>
+                                            <img src="/images/gallery_products/{{$item->src_path}}" class="img-thumbnail img-fluid">
+                                        </div>
                                     @endforeach
                                 @endif
                                 <div class="clearfix"></div>
@@ -132,12 +130,9 @@
                                     @if ($errors->has('gallery.*'))
                                         <div class="alert alert-danger">
                                             @foreach ($errors->get('gallery.*') as $messages)
-
                                                     <ul>
                                                         @foreach ($messages as $message)
-
                                                                 <li>{{ ($message) }}</li>
-
                                                         @endforeach
                                                     </ul>
                                             @endforeach
@@ -152,10 +147,10 @@
                                     <label for="available" >Товар в наличии</label>
 
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 {{ $errors->has('available') ? 'has-error' : '' }}">
                                             <select  size="1"  name="available" class="form-control">
                                                     <option selected disabled hidden>Выберите</option>
-                                                    <option value="1" {{ old('available')=== 1 || $product->available === 1 ? 'selected' : '' }}>Да</option>
+                                                    <option selected="selected" value="1" {{ old('available')=== 1 || $product->available === 1 ? 'selected' : '' }}>Да</option>
                                                     <option value="0" {{ old('available')=== 0 || $product->available === 0 ? 'selected' : '' }}>Нет</option>
                                             </select>
                                             @if ($errors->has('available'))
@@ -172,13 +167,13 @@
                                     <label for="onMain" >Отображать на главной странице</label>
 
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 {{ $errors->has('onMain') ? 'has-error' : '' }}">
                                             <select size="1"  name="onMain" class="form-control">
                                                 <option selected disabled hidden>Выберите</option>
-                                                <option value="1" {{ old('onMain') || $product->onMain === 1 ? 'selected' : '' }}>Да</option>
-                                                <option value="0" {{ old('onMain') || $product->onMain === 0 ? 'selected' : '' }}>Нет</option>
+                                                <option selected="selected" value="1" {{ old('onMain')=== 1 || $product->onMain === 1 ? 'selected' : '' }}>Да</option>
+                                                <option value="0" {{ old('onMain')=== 0 || $product->onMain === 0 ? 'selected' : '' }}>Нет</option>
                                             </select>
-                                        @if ($errors->has('available'))
+                                        @if ($errors->has('onMain'))
                                             <span class="invalid-feedback text-danger">
                                                 <strong>{{ $errors->first('onMain') }}</strong>
                                             </span>
@@ -188,13 +183,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="_content" class="col-md-11 ">Описание товара</label>
-                                <div class="col-md-11">
-                                    <textarea id="content" name="_content" class="form-control my-editor" rows="10" >{{ old('_content') }}    {!!$product->content  !!}</textarea>
+                                <label for="_content" class="col-md-12 ">Описание товара</label>
+                                <div class="col-md-12 {{ $errors->has('_content') ? 'has-error' : '' }}">
+                                    <textarea id="content" name="_content" class="form-control my-editor" rows="10" >{!! !$product->content ?  old('_content') : $product->content  !!}</textarea>
                                 </div>
+                                @if ($errors->has('_content'))
+                                    <span class="invalid-feedback text-danger">
+                                        <strong>{{ $errors->first('_content') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group row ">
-                                <div class="col-md-6 ">
+                                <div class="col-md-6">
                                     <button id="submit-all" type="submit" class="btn btn-primary">
                                         {{ __('Сохранить') }}
                                     </button>

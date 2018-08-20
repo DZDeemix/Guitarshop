@@ -1,4 +1,22 @@
+<?php
+
+$metaURL = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$imgURL = 'http://'.$_SERVER['HTTP_HOST'] . '/public/images/cover_products/' . $product->cover;
+
+?>
 @extends('layouts.site')
+@section('Meta_property')
+    @if($product)
+    <title>{{ $product->title }}</title>
+    <meta name="keywords" content="{{$product->meta_key}}">
+    <meta name="description" content="{{$product->meta_description}}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="<?= $metaURL ?>">
+    <meta property="og:title" content="{{ $product->title }}">
+    <meta property="og:description" content="{{$product->meta_description}}">
+    <meta property="og:image" content="<?= $imgURL ?>">
+    @endif
+@endsection
 @section('body')
     <body class="product single-product">
 @endsection
@@ -20,20 +38,12 @@
                                 @csrf
                                 <input class="order-field-product_id" type="hidden" name="product_id" value="{{$product->id}}">
                                 <div class="col-md-12">
-                                {{--<div class="form-group row">
-                                    <p>
-                                    <label><abbr title="required" class="required ">Ваше Имя </abbr></label>
-                                        <input  class="col-md-12" name="name" type="text"  value="{{ old('name') }}" required>
-                                    </p>
-                                </div>--}}
+
                                 <div class="form-group">
                                     <label for="email" class="modal_order">{{ __('Ваш email') }}</label>
                                     <input class="order-field-email" style="width:100%;"  name="email" type="text"  value="{{ old('email') }}" required>
                                 </div>
-                                {{--<div class="form-group row">
-                                    <label for="address" >{{ __('Ваш номер телефона') }}</label>
-                                        <input class="col-md-12" name="address" type="text"  value="{{ old('address') }}" required>
-                                </div>--}}
+
                                 <div class="form-group">
                                     <label for="_content" class="modal_order">{{ __('Коментарии к заказу') }}</label>
                                     <textarea class="order-field-content" style="width:100%;" name="_content"  rows="10" >{{ old('_content') }}</textarea>
@@ -41,7 +51,7 @@
 
                                 <span role="button" class="btn btn-primary modal_btn order-submit">Оставить заявку</span>
 
-                               {{-- <button  type="submit" class="btn btn-primary modal_btn">Оставить заявку</button>--}}
+
                                 </div>
                             </div>
 
@@ -72,13 +82,13 @@
                                 <div id="sync1" class="owl-carousel owl-template">
                                     @if ($product->cover)
                                         <div class="item">
-                                            <figure><img src="/images/cover_products/{{$product->cover}}" alt="slide" width="1080" height="768"/></figure>
+                                            <figure><img src="{{$product->pathdircover . $product->cover}}" alt="slide" width="1080" height="768"/></figure>
                                         </div>
                                     @endif
                                     @if ($product->gallery)
                                         @foreach($product->gallery as $item)
                                             <div class="item">
-                                                <figure><img src="/images/gallery_products/{{$item->src_path}}" alt="slide" width="1080" height="768"/></figure>
+                                                <figure><img src="{{$product->pathdir . $item->src_path}}" alt="slide" width="1080" height="768"/></figure>
                                             </div>
                                         @endforeach
                                     @endif
@@ -87,13 +97,13 @@
                                 <div id="sync2" class="owl-carousel owl-template">
                                     @if ($product->cover)
                                         <div class="item">
-                                            <figure><img src="/images/cover_products/{{$product->cover}}" alt="slide" width="1080" height="768"/></figure>
+                                            <figure><img src="{{$product->pathdircover . $product->cover}}" alt="slide" width="1080" height="768"/></figure>
                                         </div>
                                     @endif
                                     @if ($product->gallery)
                                         @foreach($product->gallery as $item)
                                             <div class="item">
-                                                <figure><img src="/images/gallery_products/{{$item->src_path}}" alt="slide" width="1080" height="768"/></figure>
+                                                <figure><img src="{{$product->pathdir . $item->src_path}}" alt="slide" width="1080" height="768"/></figure>
                                             </div>
                                         @endforeach
                                     @endif
@@ -110,13 +120,13 @@
                                     <div class="product-single-short-description">
                                         <p>{!! $product->content !!}</p>
                                     </div>
+
+
+
                                     @yield('modal')
                                     <form class="cart" >
                                         <div class="quantity">
-
                                         </div>
-
-
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#order">Заказать</button>
 
                                     </form>
@@ -131,10 +141,23 @@
                                         </span>
 
                                     </div>
-
+                                    <div class="entry-meta-tag-list">
+                                        <div class="entry-meta-tag-right">
+                                            <div class="social-share-wrap">
+                                                <label><i class="fa fa-share-alt"></i>Share:</label>
+                                                <ul class="social-share">
+                                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($metaURL) ?>"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="https://twitter.com/share?url=<?= urlencode($metaURL) ?>"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl=<?= urlencode($metaURL) ?>&st.comments={{ $product->title }}"><i class="fa fa-odnoklassniki"></i></a></li>
+                                                    <li><a href="http://vk.com/share.php?url=<?= urlencode($metaURL) ?>"><i class="fa fa-vk"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

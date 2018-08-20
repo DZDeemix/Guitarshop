@@ -13799,7 +13799,7 @@ header.header.menu-fixed .header-right {
 }
 header.header.menu-fixed .main-nav > .nav > li,
 header.header.menu-fixed .header-customize-item {
-  padding: 10px 0;
+
 }
 header.header.menu-fixed .header-logo {
   padding: 8px 0;
@@ -14755,7 +14755,7 @@ header.header.yolo-header-style-4 .header-sidebar .form-input a {
   right: 0;
   text-align: right;
   top: 0;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .yolo-header-style-10 .header-right > div {
   display: inline-block;
@@ -15511,4 +15511,18 @@ div.custom-pagination ul {
     width: 20%;
 
   }
+}
+
+.search {
+  height:32px;
+  width:32px;
+  border: none;
+  cursor: pointer;
+  color:black;
+  background-color:white;
+  position:relative;
+}
+input[type="submit"] {
+  font-family: FontAwesome;
+  font-size: 1.3333333333333333em;
 }

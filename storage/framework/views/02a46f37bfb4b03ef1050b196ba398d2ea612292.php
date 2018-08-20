@@ -35,8 +35,8 @@
                 <div class="form-group row">
                     <label for="title" class="col-md-12 "><?php echo e(__('Порядок')); ?></label>
 
-                    <div class="col-md-12">
-                        <input id="title" type="text" class="form-control<?php echo e($errors->has('number_id') ? ' is-invalid' : ''); ?>" name="number_id" value="<?php echo e(old('number_id')); ?> <?php echo e($slidergallery->number_id); ?>" required autofocus>
+                    <div class="col-md-12 <?php echo e($errors->has('number_id') ? ' has-error' : ''); ?>">
+                        <input id="title" type="text" class="form-control" name="number_id" value="<?php echo e(old('number_id')); ?> <?php echo e($slidergallery->number_id); ?>" required autofocus>
 
 
                         <?php if($errors->has('number_id')): ?>
@@ -48,18 +48,19 @@
                 </div>
                 <div class="form-group row">
                     <label for="cover" class="col-md-11 ">Добавить обложку</label>
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         <?php if($slidergallery->src_path): ?>
                         <div class="col-md-4">
 
                             <img src="<?php echo e($pathdir . $slidergallery->src_path); ?>" class="img-thumbnail img-fluid">
                         </div>
                         <?php endif; ?>
-                        <input name="cover" type="file"  class="form-control" >
-
+                        <div class="<?php echo e($errors->has('number_id') ? ' has-error' : ''); ?>">
+                            <input name="cover" type="file"  class="form-control" >
+                        </div>
                         <?php if($errors->has('src_path')): ?>
                         <span class="invalid-feedback">
-                                                    <strong><?php echo e($errors->first('cover')); ?></strong>
+                                                    <strong><?php echo e($errors->first('src_path')); ?></strong>
                                                 </span>
                         <?php endif; ?>
                     </div>

@@ -9,12 +9,12 @@ class Product extends BaseModel
 {
 
     public $table = 'products';
-    public $pathdir = '/images/gallery_products';
-    public $pathdircover = 'images/cover_products';
-    protected $appends = [
-        'created_utc',
-        'updated_utc',
-    ];
+    public $pathdir = '/images/gallery_products/';
+    public $pathdircover = '/images/cover_products/';
+    public $big_title = '';
+    public $submint_action = '';
+    public $param = ['alias'=>''];
+
 
 
     public function gallery()
@@ -22,59 +22,51 @@ class Product extends BaseModel
         return $this->hasMany('App\Gallery','product_id');
     }
 
-    public function  addproduct($request,$product)
+    public function  addproduct($request)
     {
-        $product->title = $request->title;
-        $product->alias = $request->alias;
-        $product->meta_key = $request->meta_key;
-        $product->meta_description = $request->meta_description;
-        $product->content = $request->_content;
-        $product->price = $request->price;
-        $product->available = boolval($request->available);
-        $product->onMain = boolval($request->onMain);
+        $this->title = $request->title;
+        $this->alias = $request->alias;
+        $this->meta_key = $request->meta_key;
+        $this->meta_description = $request->meta_description;
+        $this->content = $request->_content;
+        $this->price = $request->price;
+        $this->available = boolval($request->available);
+        $this->onMain = boolval($request->onMain);
         //Добавляем обложку
         $file = $request->file('cover');
         $cover = $this->uploadfile($this->pathdircover, $file);
         if ($cover)
         {
             //проверем есть ли старый файл и удаляем его
-            $filename = $product->cover;
+            $filename = $this->cover;
             if($filename)
             {
                 $filename = public_path($this->pathdircover).$filename;
                 $this->deletefile($filename);
             }
             //сохраняем полученый файл
-            $product->cover = $cover;
+            $this->cover = $cover;
         }
-        $response = $product->save();
+        $response = $this->save();
         if(isset( $request->gallery))
         {
-            /*//проверем есть ли старые файлы и удаляем их
-            $id = $product->id;
-            $gallery = Product::find($id)->gallery;
-            if($gallery)
-            {
-                foreach ($gallery as $item) {
-                    $filename = public_path($this->pathdir).$item->src_path;
-                    $this->deletefile($filename);
-                    $item->delete();
-                }
 
-            }*/
-            //сохраняем полученый файлы
-
-            $this->uploadfiles($request->gallery, $this->pathdir, 'App\Gallery', $product->id);
+            $this->uploadfiles($request->gallery, $this->pathdir, 'App\Gallery', $this->id);
         }
         return $response;
     }
-    public function getCreatedUtcAttribute()
-    {
-        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->getOriginal('created_at'))->timezone($this->timeZone)->format('d-m-y H:i:s');
-    }
 
-    public function getUpdatedUtcAttribute()
+
+    public  function show_editproduct($input)
     {
-        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->getOriginal('updated_at'))->timezone($this->timeZone)->format('d-m-y H:i:s');
+        $this->big_title = 'Редактировать продукт';
+        $this->submint_action = 'admin_edit_product';
+        $this->param = ['alias' => $input];
+    }
+    public function show_addproduct()
+    {
+        $this->big_title = 'Добавить продукт';
+        $this->submint_action = 'admin_add_product';
+        $this->param = 0;
     }
 }

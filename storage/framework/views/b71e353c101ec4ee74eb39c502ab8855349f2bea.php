@@ -10,7 +10,7 @@
                         <span class="on-new product-flash">Sold</span>
                     <?php endif; ?>
                 </div>
-                <div class="product-thumb-primary absolute-center absolute-center-products" style="background-image: url( '<?php echo e('/images/cover_products/' . $item->cover); ?>' );">
+                <div class="product-thumb-primary absolute-center absolute-center-products" style="background-image: url( '<?php echo e($item->pathdircover .  $item->cover); ?>' );">
                     
                     
                 </div>

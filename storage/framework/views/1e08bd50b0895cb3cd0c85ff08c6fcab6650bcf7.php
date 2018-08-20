@@ -21,9 +21,8 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header"><?php echo e($big_title); ?></h1>
+            <h1 class="page-header"><?php echo e($product->big_title); ?></h1>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
 
             <div class="cbf">
@@ -31,18 +30,18 @@
                     <div class="card-header"></div>
 
                     <div class="card-body">
-                        <form method="POST"    action="<?php echo e(route($submint_action, $param)); ?>" enctype="multipart/form-data">
+                        <form method="POST"    action="<?php echo e(route($product->submint_action, $product->param)); ?>" enctype="multipart/form-data">
                             <div class="product-wrapper">
                             <?php echo csrf_field(); ?>
 
 
 
                             <div class="form-group row">
-                                <label for="title" class="col-md-2 "><?php echo e(__('Заголовок')); ?></label>
+                                <label for="title" class="col-md-2 "><?php echo e(__('Название товара')); ?></label>
 
-                                <div class="col-md-9">
-                                    <input id="title" type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="title" value="<?php echo e(old('title')); ?> <?php echo e($product->title); ?>" required autofocus>
-                                    <input name="alias" id="alias" type="hidden" value="<?php echo e(old('alias')); ?> <?php echo e($product->alias); ?>" required>
+                                <div class="col-md-10 <?php echo e($errors->has('title') ? 'has-error' : ''); ?>">
+                                    <input id="title" type="text" class="form-control" name="title" value="<?php echo e(!$product->title ?  old('title') : $product->title); ?>" required autofocus>
+                                    <input name="alias" id="alias" type="hidden" value="<?php echo e(!$product->alias ? old('alias') : $product->alias); ?>" required>
 
                                     <?php if($errors->has('title')): ?>
                                         <span class="invalid-feedback text-danger">
@@ -55,8 +54,8 @@
                             <div class="form-group row">
                                 <label for="meta_key" class="col-md-2 "><?php echo e(__('Метаключи')); ?></label>
 
-                                <div class="col-md-9">
-                                    <input id="meta_key" type="text" class="form-control<?php echo e($errors->has('meta_key') ? ' is-invalid' : ''); ?>" name="meta_key" value="<?php echo e(old('meta_key')); ?> <?php echo e($product->meta_key); ?>" required autofocus>
+                                <div class="col-md-10 <?php echo e($errors->has('meta_key') ? 'has-error' : ''); ?>">
+                                    <input id="meta_key" type="text" class="form-control" name="meta_key" value="<?php echo e(!$product->meta_key ? old('meta_key'): $product->meta_key); ?>" required autofocus>
 
                                     <?php if($errors->has('meta_key')): ?>
                                         <span class="invalid-feedback text-danger">
@@ -69,8 +68,8 @@
                             <div class="form-group row">
                                 <label for="title" class="col-md-2"><?php echo e(__('Мета-описание')); ?></label>
 
-                                <div class="col-md-9">
-                                    <input id="meta_description" type="text" class="form-control<?php echo e($errors->has('meta_description') ? ' is-invalid' : ''); ?>" name="meta_description" value="<?php echo e(old('meta_description')); ?> <?php echo e($product->meta_description); ?>" required autofocus>
+                                <div class="col-md-10 <?php echo e($errors->has('meta_description') ? 'has-error' : ''); ?>">
+                                    <input id="meta_description" type="text" class="form-control" name="meta_description" value="<?php echo e(!$product->meta_description ? old('meta_description') : $product->meta_description); ?>" required autofocus>
 
                                     <?php if($errors->has('meta_description')): ?>
                                         <span class="invalid-feedback text-danger">
@@ -83,8 +82,8 @@
                             <div class="form-group row">
                                 <label for="price" class="col-md-2 "><?php echo e(__('Цена')); ?></label>
 
-                                <div class="col-md-9">
-                                    <input id="price" type="text" class="form-control<?php echo e($errors->has('price') ? ' is-invalid' : ''); ?>" name="price" value="<?php echo e(old('price')); ?> <?php echo e($product->price); ?>" required autofocus>
+                                <div class="col-md-10 <?php echo e($errors->has('price') ? 'has-error' : ''); ?>">
+                                    <input id="price" type="text" class="form-control" name="price" value="<?php echo e(!$product->price ? old('price') :  $product->price); ?> " >
 
                                     <?php if($errors->has('price')): ?>
                                         <span class="invalid-feedback text-danger">
@@ -99,7 +98,6 @@
                             <div class="form-group col-md-5 vbottom">
                                 <?php if($product->cover): ?>
                                     <div>
-
                                         <img src="/images/cover_products/<?php echo e($product->cover); ?>" class="img-thumbnail img-fluid">
                                     </div>
                                 <?php endif; ?>
@@ -131,12 +129,9 @@
                                     <?php if($errors->has('gallery.*')): ?>
                                         <div class="alert alert-danger">
                                             <?php $__currentLoopData = $errors->get('gallery.*'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $messages): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                                                     <ul>
                                                         <?php $__currentLoopData = $messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                                                                 <li><?php echo e(($message)); ?></li>
-
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </ul>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -151,10 +146,10 @@
                                     <label for="available" >Товар в наличии</label>
 
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 <?php echo e($errors->has('available') ? 'has-error' : ''); ?>">
                                             <select  size="1"  name="available" class="form-control">
                                                     <option selected disabled hidden>Выберите</option>
-                                                    <option value="1" <?php echo e(old('available')=== 1 || $product->available === 1 ? 'selected' : ''); ?>>Да</option>
+                                                    <option selected="selected" value="1" <?php echo e(old('available')=== 1 || $product->available === 1 ? 'selected' : ''); ?>>Да</option>
                                                     <option value="0" <?php echo e(old('available')=== 0 || $product->available === 0 ? 'selected' : ''); ?>>Нет</option>
                                             </select>
                                             <?php if($errors->has('available')): ?>
@@ -171,13 +166,13 @@
                                     <label for="onMain" >Отображать на главной странице</label>
 
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 <?php echo e($errors->has('onMain') ? 'has-error' : ''); ?>">
                                             <select size="1"  name="onMain" class="form-control">
                                                 <option selected disabled hidden>Выберите</option>
-                                                <option value="1" <?php echo e(old('onMain') || $product->onMain === 1 ? 'selected' : ''); ?>>Да</option>
-                                                <option value="0" <?php echo e(old('onMain') || $product->onMain === 0 ? 'selected' : ''); ?>>Нет</option>
+                                                <option selected="selected" value="1" <?php echo e(old('onMain')=== 1 || $product->onMain === 1 ? 'selected' : ''); ?>>Да</option>
+                                                <option value="0" <?php echo e(old('onMain')=== 0 || $product->onMain === 0 ? 'selected' : ''); ?>>Нет</option>
                                             </select>
-                                        <?php if($errors->has('available')): ?>
+                                        <?php if($errors->has('onMain')): ?>
                                             <span class="invalid-feedback text-danger">
                                                 <strong><?php echo e($errors->first('onMain')); ?></strong>
                                             </span>
@@ -187,13 +182,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="_content" class="col-md-11 ">Описание товара</label>
-                                <div class="col-md-11">
-                                    <textarea id="content" name="_content" class="form-control my-editor" rows="10" ><?php echo e(old('_content')); ?>    <?php echo $product->content; ?></textarea>
+                                <label for="_content" class="col-md-12 ">Описание товара</label>
+                                <div class="col-md-12 <?php echo e($errors->has('_content') ? 'has-error' : ''); ?>">
+                                    <textarea id="content" name="_content" class="form-control my-editor" rows="10" ><?php echo !$product->content ?  old('_content') : $product->content; ?></textarea>
                                 </div>
+                                <?php if($errors->has('_content')): ?>
+                                    <span class="invalid-feedback text-danger">
+                                        <strong><?php echo e($errors->first('_content')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
                             </div>
                             <div class="form-group row ">
-                                <div class="col-md-6 ">
+                                <div class="col-md-6">
                                     <button id="submit-all" type="submit" class="btn btn-primary">
                                         <?php echo e(__('Сохранить')); ?>
 

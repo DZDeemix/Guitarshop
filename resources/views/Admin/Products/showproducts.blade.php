@@ -41,12 +41,9 @@
 
                             <td></td>
                             <td>
-
-
                                 <input id="title" type="text" class="form-control inputadmin" name="title" value="{{ request()->title }}">
-
                             </td>
-                            <td  ><input  type="text" class="form-control inputadmin" name="alias" value="{{ request()->alias }}"></td>
+                            <td><input  type="text" class="form-control inputadmin" name="alias" value="{{ request()->alias }}"></td>
                             <td></td>
                             <td></td>
 
@@ -63,29 +60,31 @@
                         @foreach($data as $item)
                         <tr class="odd gradeX">
                             <td>
-                                @if ($item->cover)
-                                    <div class="col-md-12">
-                                        <img src="/images/cover_products/{{$item->cover}}" class="img-responsive">
-                                    </div>
-                                @endif
+                                <div class="row-heigth">
+                                    @if ($item->cover)
+                                        <div class="col-md-12">
+                                            <img src="/images/cover_products/{{$item->cover}}" class="img-responsive">
+                                        </div>
+                                    @endif
+                                </div>
                             </td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->alias }}</td>
-                            <td>{{ $item->created_utc }}
-                            </td>
-                            <td>{{ $item->updated_utc }}</td>
+                            <td><div class="row-heigth">{{ $item->title }}</div></td>
+                            <td><div class="row-heigth">{{ $item->alias }}</div></td>
+                            <td><div class="row-heigth">{{ $item->created_utc }}</div></td>
+                            <td><div class="row-heigth">{{ $item->updated_utc }}</div></td>
                             <td class="center">
-                                <a href="{{route('admin_edit_product_show', ['alias' => $item->alias]) }}">
-                                    <div class="edit-modal btn btn-info btn-block">
-                                        <span class="glyphicon glyphicon-edit">Edit</span>
-                                    </div>
-                                </a>
-                                <a href="{{route('admin_delete_product', ['alias' => $item->alias]) }}">
-                                    <div class="delete-modal btn btn-danger btn-block">
-                                        <span class="glyphicon glyphicon-trash">Delete</span>
-                                    </div>
-                                </a>
-
+                                <div class="row-heigth">
+                                    <a href="{{route('admin_edit_product_show', ['alias' => $item->alias]) }}">
+                                        <div class="edit-modal btn btn-info btn-block">
+                                            <span class="glyphicon glyphicon-edit">Edit</span>
+                                        </div>
+                                    </a>
+                                    <a href="{{route('admin_delete_product', ['alias' => $item->alias]) }}">
+                                        <div class="delete-modal btn btn-danger btn-block">
+                                            <span class="glyphicon glyphicon-trash">Delete</span>
+                                        </div>
+                                    </a>
+                                </div>
                             </td>
 
                         </tr>

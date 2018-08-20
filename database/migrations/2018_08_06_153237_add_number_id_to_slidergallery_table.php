@@ -26,7 +26,7 @@ class AddNumberIdToSlidergalleryTable extends Migration
     public function down()
     {
         Schema::table('slidergallery', function (Blueprint $table) {
-            //
+            $table->integer('number_id');
         });
     }
 }

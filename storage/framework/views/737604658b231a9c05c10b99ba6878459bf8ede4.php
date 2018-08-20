@@ -93,13 +93,13 @@
                                         <td>Название</td>
                                         <td>email</td>
                                         <td>цена</td>
-                                        <td style="border: 1px solid black; word-break: break-all;">Коментарий</td>
+                                        <td style="word-break: break-all;">Коментарий</td>
                                 </tr>
                                 <tr >
                                         <td><?php echo e($order->product->title); ?></td>
                                         <td><?php echo e($order->guest->email); ?></td>
                                         <td><?php echo e($order->product->price); ?></td>
-                                        <td style="border: 1px solid black; word-break: break-all;"><?php echo e($order->content); ?>       </td>
+                                        <td style="word-break: break-all;"><?php echo e($order->content); ?></td>
                                 </tr>
                         </table>
 

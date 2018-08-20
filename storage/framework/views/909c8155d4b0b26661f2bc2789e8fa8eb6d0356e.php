@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header"><?php echo e($big_title); ?></h1>
+            <h1 class="page-header"><?php echo e($post->big_title); ?></h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -30,14 +30,14 @@
                     <div class="card-header"></div>
 
                     <div class="card-body">
-                        <form method="POST"    action="<?php echo e(route($submint_action, $param)); ?>" enctype="multipart/form-data">
+                        <form method="POST"    action="<?php echo e(route($post->submint_action, $post->param)); ?>" enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
                             <div class="form-group row">
                                 <label for="title" class="col-md-2 "><?php echo e(__('Заголовок')); ?></label>
 
-                                <div class="col-md-9">
-                                    <input id="title" type="text" class="form-control<?php echo e($errors->has('title') ? ' is-invalid' : ''); ?>" name="title" value="<?php echo e(old('title')); ?> <?php echo e($post->title); ?>" required autofocus>
-                                    <input name="alias" id="alias" type="hidden" value="<?php echo e(old('alias')); ?> <?php echo e($post->alias); ?>" required>
+                                <div class="col-md-10 <?php echo e($errors->has('title') ? 'has-error' : ''); ?>">
+                                    <input id="title" type="text" class="form-control" name="title" value="<?php echo e(!$post->title ? old('title') : $post->title); ?>" required autofocus>
+                                    <input name="alias" id="alias" type="hidden" value="<?php echo e(!$post->alias ? old('alias') : $post->alias); ?>" required>
 
                                     <?php if($errors->has('title')): ?>
                                         <span class="invalid-feedback">
@@ -50,8 +50,8 @@
                             <div class="form-group row">
                                 <label for="meta_key" class="col-md-2 "><?php echo e(__('Метаключи')); ?></label>
 
-                                <div class="col-md-9">
-                                    <input id="meta_key" type="text" class="form-control<?php echo e($errors->has('meta_key') ? ' is-invalid' : ''); ?>" name="meta_key" value="<?php echo e(old('meta_key')); ?> <?php echo e($post->meta_key); ?>" required autofocus>
+                                <div class="col-md-10 <?php echo e($errors->has('meta_key') ? 'has-error' : ''); ?>">
+                                    <input id="meta_key" type="text" class="form-control" name="meta_key" value="<?php echo e(!$post->meta_key ? old('meta_key') : $post->meta_key); ?>" required autofocus>
 
                                     <?php if($errors->has('meta_key')): ?>
                                         <span class="invalid-feedback">
@@ -64,8 +64,8 @@
                             <div class="form-group row">
                                 <label for="title" class="col-md-2"><?php echo e(__('Мета-описание')); ?></label>
 
-                                <div class="col-md-9">
-                                    <input id="meta_description" type="text" class="form-control<?php echo e($errors->has('meta_description') ? ' is-invalid' : ''); ?>" name="meta_description" value="<?php echo e(old('meta_description')); ?><?php echo e($post->meta_description); ?>" required autofocus>
+                                <div class="col-md-10 <?php echo e($errors->has('meta_description') ? 'has-error' : ''); ?>">
+                                    <input id="meta_description" type="text" class="form-control" name="meta_description" value="<?php echo e(!$post->meta_description ? old('meta_description') : $post->meta_description); ?>" required autofocus>
 
                                     <?php if($errors->has('meta_description')): ?>
                                         <span class="invalid-feedback">
@@ -77,28 +77,43 @@
 
 
                             <div class="form-group row">
-                                <label for="cover" class="col-md-11 ">Добавить обложку</label>
-                                <div class="col-md-11">
+                                <label for="cover" class="col-md-12 ">Добавить обложку</label>
+                                <div class="col-md-12">
                                     <?php if($post->cover): ?>
                                         <div class="col-md-4">
-
                                             <img src="/images/coves_posts/<?php echo e($post->cover); ?>" class="img-thumbnail img-fluid">
                                         </div>
                                     <?php endif; ?>
+
                                         <input name="cover" type="file"  class="form-control" >
 
                                     <?php if($errors->has('cover')): ?>
                                         <span class="invalid-feedback">
-                                                    <strong><?php echo e($errors->first('cover')); ?></strong>
-                                                </span>
+                                            <strong><?php echo e($errors->first('cover')); ?></strong>
+                                        </span>
                                     <?php endif; ?>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="_content" class="col-md-11 ">Текст статьи</label>
-                                <div class="col-md-11">
-                                    <textarea id="content" name="_content" class="form-control my-editor" rows="10" ><?php echo old('_content'); ?>  <?php echo $post->content; ?></textarea>
+                                <label for="_content" class="col-md-12">Дата и время публикации поста. Время на сервере: <?php echo e(date('H:i', time())); ?></label>
+                                <div class="col-md-12">
+                                    <div class="input-group date" id="datetimepicker1">
+                                        <span class="input-group-addon datepickerbutton">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input name="postdata" type="text" class="form-control" value="<?php echo e(!(date('d.m.Y H:i', $post->postdata)) ?  date('d.m.Y H:i', old('postdata')) : date('d.m.Y H:i', $post->postdata)); ?>"/>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="_content" class="col-md-12 ">Текст статьи</label>
+                                <div class="col-md-12">
+                                    <textarea id="content" name="_content" class="form-control my-editor" rows="10" ><?php echo !$post->content ? old('_content')  : $post->content; ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
@@ -157,6 +172,21 @@
         };
 
         tinymce.init(editor_config);
+    </script>
+    <!-- 4. Подключить библиотеку moment -->
+    <script src="/admin_site/vendor/moment-locale/moment.js"></script>
+
+    <!-- 6. Подключить js-файл библиотеки Bootstrap 3 DateTimePicker -->
+    <script src="/admin_site/vendor/DateTimePicker/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+        $(function () {
+            // идентификатор элемента (например: #datetimepicker1), для которого необходимо инициализировать виджет Bootstrap DateTimePicker
+            $('#datetimepicker1').datetimepicker({
+                locale: 'ru',
+
+            });
+        });
     </script>
     <?php $__env->stopPush(); ?>
 

@@ -24,14 +24,12 @@
 
                             <thead>
                             <tr class="something">
-                                
                                 <th class="col-md-2" >Обложка</th>
                                 <th class="col-md-3" >Название</th>
                                 <th class="col-md-3" >Alias</th>
-                                <th class="col-md-1" >Создан</th>
+                                <th class="col-md-1" >Дата публикации</th>
                                 <th class="col-md-1" >Обновлён</th>
-                                <th class="col-md-1" >Control</th>
-
+                                <th class="col-md-1" >Управление</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,9 +37,13 @@
 
                                     <td></td>
                                     <td>
-                                            <input id="title" type="text" class="form-control inputadmin" name="title" value="<?php echo e(request()->title); ?>">
+                                        <input id="title" type="text" class="form-control inputadmin" name="title" value="<?php echo e(request()->title); ?>">
                                     </td>
-                                    <td  ><input  type="text" class="form-control inputadmin" name="alias" value="<?php echo e(request()->alias); ?>"></td>
+
+                                    <td>
+                                        <input  type="text" class="form-control inputadmin" name="alias" value="<?php echo e(request()->alias); ?>">
+                                    </td>
+
                                     <td></td>
                                     <td></td>
 
@@ -59,16 +61,15 @@
 
                                 <td>
                                     <?php if($item->cover): ?>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 row-heigth">
                                                 <img src="/images/coves_posts/<?php echo e($item->cover); ?>" class="img-responsive">
                                         </div>
                                     <?php endif; ?>
                                 </td>
-                                <td><?php echo e($item->title); ?></td>
-                                <td><?php echo e($item->alias); ?></td>
-
-                                <td><?php echo e($item->created_utc); ?></td>
-                                <td><?php echo e($item->updated_utc); ?></td>
+                                <td><div class="row-heigth"><?php echo e($item->title); ?></div></td>
+                                <td><div class="row-heigth"><?php echo e($item->alias); ?></div></td>
+                                <td><div class="row-heigth"><?php echo e(date('d.m.Y H:i', $item->postdata)); ?></div></td>
+                                <td><div class="row-heigth"><?php echo e($item->updated_utc); ?></div></td>
                                 <td class="center">
                                     <a href="<?php echo e(route('admin_edit_post_show', ['alias' => $item->alias])); ?>">
                                         <div class="edit-modal btn btn-info btn-block">

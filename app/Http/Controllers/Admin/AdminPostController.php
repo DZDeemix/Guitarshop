@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\EditPostRequest;
 use App\Http\Requests\UploadPostRequest;
 use App\Settings;
 use Illuminate\Support\Facades\DB;
@@ -17,22 +18,16 @@ class AdminPostController extends Controller
 {
     public function show_addpost()
     {
-        $big_title = 'Добавить пост';
-        $submint_action = 'admin_add_post';
-        $param = 0;
         $post = new Post;
-
-        return view('Admin.Posts.addpost',['big_title' => $big_title,
-                                                    'submint_action' => $submint_action,
-                                                     'param'=>$param,
-        'post' => $post]);
+        $post->show_addpost();
+        return view('Admin.Posts.addpost',['post' => $post]);
     }
 
 
     public function addpost(UploadPostRequest $request)
     {
         $post = new Post;
-        $susses = $post->addpost($post,$request);
+        $susses = $post->addpost($request);
 
         if($susses){
             Session::flash('success', "Данные успешно добавлены");
@@ -47,6 +42,7 @@ class AdminPostController extends Controller
     {
         $data = new Post;
         $data = $data->orderBy('created_at', 'DESC');
+
         $query = [];
 
         if ($request->has('title'))
@@ -72,28 +68,18 @@ class AdminPostController extends Controller
 
     public function show_editpost (Request $request)
     {
-
-        $big_title = 'Редактировать пост';
-        $submint_action = 'admin_edit_post';
-
         $input = $request->route()->parameter('alias');
-        $param = ['alias'=>$input];
         $post = Post::where('alias', $input)->firstOrFail();
-
-        $view = view('Admin.Posts.addpost',['big_title' => $big_title,
-                                                  'submint_action' => $submint_action,
-                                                   'param' => $param,
-            'post' => $post])->render();
-
-        return $view;
+        $post->show_editpost($input);
+        return view('Admin.Posts.addpost',['post' => $post]);
 
     }
-    public function editpost (Request $request)
+    public function editpost (EditPostRequest $request)
     {
         $input = $request->route()->parameter('alias');
         $post = Post::where('alias', $input)->first();
 
-        $susses = $post->addpost($post,$request);
+        $susses = $post->addpost($request);
         if($susses){
             Session::flash('success', "Данные успешно добавлены");
             return Redirect::route('admin_edit_post_show', ['alias' => $post->alias]);

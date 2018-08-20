@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Http\Requests\SettingsRequest;
+use App\Http\Requests\SliderRequest;
 use App\Settings;
 use App\Slidergallery;
 use Session;
@@ -22,7 +24,7 @@ class AdminSettingsController extends Controller
         return view('Admin.settings', ['slidergallery' => $slidergallery, 'setting' => $setting, 'pathdir' => Slidergallery::$pathdir]);
     }
 
-    public function change(Request $request)
+    public function change(SettingsRequest $request)
     {
 
         if($request->on_main_gallery)
@@ -90,7 +92,7 @@ class AdminSettingsController extends Controller
                                                 'pathdir' => Slidergallery::$pathdir]);
 
     }
-    public function addslider(Request $request)
+    public function addslider(SliderRequest $request)
     {
 
         $slidergallery = new Slidergallery;

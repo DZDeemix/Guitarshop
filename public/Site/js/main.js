@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
     'use strict';
 
@@ -866,10 +868,10 @@ $(document).ready(function(){
         begreen_init_owl_carousel();
         begreen_2_carousel();
         begreen_3_carousel();
-        counter();
+        /*counter();*/
         back_top();
-        gr_animated();
-        moveProgressBar();
+        /*gr_animated();
+        moveProgressBar();*/
         begreen_equal_elems();
     });
 

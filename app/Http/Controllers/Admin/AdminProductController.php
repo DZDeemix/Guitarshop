@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Gallery;
+use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\UploadProductRequest;
 use App\Settings;
 use App\Slidergallery;
@@ -16,25 +17,15 @@ class AdminProductController extends Controller
 {
     public function show_addproduct()
     {
-        $big_title = 'Добавить продукт';
-        $submint_action = 'admin_add_product';
-        $param = 0;
         $product = new Product;
-
-        return view('Admin.Products.addproduct',['big_title' => $big_title,
-                                                    'submint_action' => $submint_action,
-                                                    'param'=>$param,
-            'product'=>$product]);
+        $product->show_addproduct();
+        return view('Admin.Products.addproduct',['product'=>$product]);
     }
 
     public function addproduct(UploadProductRequest $request)
     {
-        //dd($request);
-
         $product = new Product;
-        $susses = $product->addproduct($request,$product);
-
-
+        $susses = $product->addproduct($request);
         if($susses){
             Session::flash('success', "Данные успешно добавлены");
             return redirect()->back();
@@ -43,16 +34,13 @@ class AdminProductController extends Controller
             Session::flash('message', "Данные не добавлены");
             return redirect()->back();
         }
-
-
-
     }
     public function show_products (Request $request)
     {
         $data = new Product;
         $data = $data->orderBy('created_at', 'DESC');
         $query = [];
-
+        //Фильтры
         if ($request->has('title'))
         {
             $data = $data->where('title', 'like', "%$request->title%");
@@ -75,27 +63,16 @@ class AdminProductController extends Controller
 
     public function show_editproduct (Request $request)
     {
-
-        $big_title = 'Редактировать продукт';
-        $submint_action = 'admin_edit_product';
-
         $input = $request->route()->parameter('alias');
-        $param = ['alias'=>$input];
         $product = Product::where('alias', $input)->firstOrFail();
-
-        $view = view('Admin.Products.addproduct',['big_title' => $big_title,
-            'submint_action' => $submint_action,
-            'param' => $param,
-            'product' => $product]);
-
-        return $view;
-
+        $product->show_editproduct($input);
+        return view('Admin.Products.addproduct',['product' => $product]);
     }
-    public function editproduct (Request $request)
+    public function editproduct (EditProductRequest $request)
     {
         $input = $request->route()->parameter('alias');
         $product = Product::where('alias', $input)->firstOrfail();
-        $susses = $product->addproduct($request,$product);
+        $susses = $product->addproduct($request);
         if($susses){
             Session::flash('success', "Данные успешно добавлены");
             return Redirect::route('admin_edit_product_show', ['alias' => $product->alias]);
@@ -132,11 +109,13 @@ class AdminProductController extends Controller
             if ($request->action === 'delImage') {
                 try {
                     $gall = Gallery::all()->where('id', $request->galleryId)->first();
-
                     if($gall) {
-                        /*$filename = public_path('images/gallery_products/');
-
-                        $this->deletefile($filename);*/
+                                $filename = $gall->src_path;
+                                if($filename)
+                                {
+                                    $filename = public_path($gall->pathdir).$filename;
+                                    $gall->deletefile($filename);
+                                }
                         if ($gall->delete()) {
                             $response = [
                                 'error' => 0

@@ -33,17 +33,14 @@
             <div class="card-body">
                 <form method="POST"    action="{{ route('admin_change_settings') }}" enctype="multipart/form-data">
                     @csrf
-
-
-
                     <div class="form-group row">
                         <label for="title" class="col-md-12 ">{{ __('Количество постов на одной странице в панели администратора') }}</label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="paginatoin_admin" value="{{ old('paginatoin_admin') }} {{ $setting->paginatoin_admin }}" >
-                            @if ($errors->has('title'))
+                        <div class="col-md-12 {{ $errors->has('paginatoin_admin') ? ' has-error' : '' }}">
+                            <input  type="text" class="form-control" name="paginatoin_admin" value="{{ $setting->paginatoin_admin }}" >
+                            @if ($errors->has('paginatoin_admin'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('paginatoin_admin') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -52,11 +49,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 ">{{ __('Количество товаров на одной странице в панели администратора') }}</label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="paginatoin_admin_product" value="{{ old('paginatoin_admin_product') }} {{ $setting->paginatoin_admin_product }}" >
-                            @if ($errors->has('title'))
+                        <div class="col-md-12 {{ $errors->has('paginatoin_admin_product') ? ' has-error' : '' }}">
+                            <input  type="text" class="form-control" name="paginatoin_admin_product" value="{{ $setting->paginatoin_admin_product }}" >
+                            @if ($errors->has('paginatoin_admin_product'))
                                 <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('title') }}</strong>
+                                        <strong>{{ $errors->first('paginatoin_admin_product') }}</strong>
                                     </span>
                             @endif
                         </div>
@@ -65,11 +62,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 ">{{ __('Количество постов на одной странице сайта') }}</label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="paginatoin_site" value="{{ old('paginatoin_site') }} {{ $setting->paginatoin_site }}" >
-                            @if ($errors->has('title'))
+                        <div class="col-md-12 {{ $errors->has('paginatoin_site') ? ' has-error' : '' }}">
+                            <input  type="text" class="form-control" name="paginatoin_site" value="{{ $setting->paginatoin_site }}" >
+                            @if ($errors->has('paginatoin_site'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('paginatoin_site') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -77,11 +74,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 ">{{ __('Количество товаров на одной странице сайта') }}</label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="paginatoin_site_product" value="{{ old('paginatoin_site_product') }} {{ $setting->paginatoin_site_product }}" >
-                            @if ($errors->has('title'))
+                        <div class="col-md-12 {{ $errors->has('paginatoin_site_product') ? ' has-error' : '' }}">
+                            <input  type="text" class="form-control" name="paginatoin_site_product" value="{{ $setting->paginatoin_site_product }}" >
+                            @if ($errors->has('paginatoin_site_product'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('paginatoin_site_product') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -90,11 +87,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 ">{{ __('Количество постов на главной странице') }}</label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="paginatoin_site_onMain" value="{{ old('paginatoin_site_onMain') }} {{ $setting->paginatoin_site_onMain }}" >
-                            @if ($errors->has('title'))
+                        <div class="col-md-12 {{ $errors->has('paginatoin_site_onMain') ? ' has-error' : '' }}">
+                            <input  type="text" class="form-control" name="paginatoin_site_onMain" value="{{ $setting->paginatoin_site_onMain }}" >
+                            @if ($errors->has('paginatoin_site_onMain'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('paginatoin_site_onMain') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -102,11 +99,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 ">{{ __('Количество товаров на главной странице') }}</label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="paginatoin_site_onMain_products" value="{{ old('paginatoin_site_onMain_products') }} {{ $setting->paginatoin_site_onMain_products }}" >
-                            @if ($errors->has('title'))
+                        <div class="col-md-12 {{ $errors->has('paginatoin_site_onMain_products') ? ' has-error' : '' }}">
+                            <input  type="text" class="form-control" name="paginatoin_site_onMain_products" value="{{ $setting->paginatoin_site_onMain_products }}" >
+                            @if ($errors->has('paginatoin_site_onMain_products'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('paginatoin_site_onMain_products') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -115,11 +112,11 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 ">{{ __('Email адрес') }}</label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }} {{ $setting->email }}" >
-                            @if ($errors->has('title'))
+                        <div class="col-md-12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input  type="text" class="form-control" name="email" value="{{ $setting->email }}" >
+                            @if ($errors->has('email'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('title') }}</strong>
+                                    <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -129,8 +126,8 @@
                     <div class="form-group row">
                         <label for="title" class="col-md-12 ">{{ __('Email адрес для заказов') }}</label>
 
-                        <div class="col-md-12">
-                            <input  type="text" class="form-control{{ $errors->has('email_send1') ? ' is-invalid' : '' }}" name="email_send1" value="{{ old('email_send1') }} {{ $setting->email_send1 }}" >
+                        <div class="col-md-12 {{ $errors->has('email_send1') ? ' has-error' : '' }}">
+                            <input  type="text" class="form-control" name="email_send1" value="{{ $setting->email_send1 }}" >
                             @if ($errors->has('email_send1'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('email_send1') }}</strong>
