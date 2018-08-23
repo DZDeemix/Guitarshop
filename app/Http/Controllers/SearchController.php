@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchRequest;
+use App\Page;
 use App\Post;
 use App\Product;
 use App\Settings;
@@ -21,12 +22,13 @@ class SearchController extends Controller
                 $post = new Post;
                 $post = $post->orderBy('created_at', 'DESC')->where('title', 'like', "%$query%")->get();
 
-                return view('Guitarshop.search',[   'product' => $product,
-                                                            'post' => $post]);
+                $id = 5;
+                $page = Page::firstOrCreate(['id' => $id]);
+                $page->setPageId($id);
+
+                return view('Guitarshop.search',['product' => $product, 'post' => $post, 'page' => $page]);
             }
             die;
         }
-
-
 
 }

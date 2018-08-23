@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+
 
 class Order extends BaseModel
 {
+
     protected $status = [
         'Новый',
         'В обработке',
@@ -20,11 +23,11 @@ class Order extends BaseModel
 
     public function guest()
     {
-        return $this->belongsTo('App\Guest','guest_id');
+        return $this->belongsTo('App\Guest','guest_id');;
     }
     public function product()
     {
-        return $this->belongsTo('App\Product','product_id');
+        return $this->belongsTo('App\Product','product_id')->withTrashed();;
     }
 
 }

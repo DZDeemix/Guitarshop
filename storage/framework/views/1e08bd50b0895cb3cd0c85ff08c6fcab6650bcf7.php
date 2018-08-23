@@ -106,20 +106,20 @@
                                     <input name="cover"  type="file"  class="form-control">
                                     <?php if($errors->has('cover')): ?>
                                         <span class="invalid-feedback text-danger">
-                                                    <strong><?php echo e($errors->first('cover')); ?></strong>
-                                                </span>
+                                            <strong><?php echo e($errors->first('cover')); ?></strong>
+                                        </span>
                                     <?php endif; ?>
                                 </div>
                             </div>
                             <div class="form-group col-md-6 vbottom ">
                                 <?php if($product->gallery): ?>
                                     <?php $__currentLoopData = $product->gallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="col-md-3 active-gallery-item">
-                                        <span data-id="<?php echo e($item->id); ?>" class="active-gallery-del">
-                                            <i class="fa fa-trash fa-2x"></i>
-                                        </span>
-                                        <img src="/images/gallery_products/<?php echo e($item->src_path); ?>" class="img-thumbnail img-fluid">
-                                    </div>
+                                        <div class="col-md-3 active-gallery-item">
+                                            <span data-id="<?php echo e($item->id); ?>" class="active-gallery-del">
+                                                <i class="fa fa-trash fa-2x"></i>
+                                            </span>
+                                            <img src="/images/gallery_products/<?php echo e($item->src_path); ?>" class="img-thumbnail img-fluid">
+                                        </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php endif; ?>
                                 <div class="clearfix"></div>

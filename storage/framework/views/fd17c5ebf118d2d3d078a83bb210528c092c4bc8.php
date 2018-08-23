@@ -59,12 +59,11 @@
                         <div class="yolo-search-wrapper">
                             <form action="<?php echo e(route('search')); ?>" autocomplete="off">
                                 <input id="search-ajax" placeholder="Enter keyword to search" type="search"  name="s"/>
-                                <button class="submit"><i class="fa fa-search"></i></button>
+                                <button class="submit search-button-custom"><i class="fa fa-search"></i></button>
                                 <button class="close"><i class="pe-7s-close"></i></button>
-                            </form>>
+                            </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -79,9 +78,17 @@
                     <?php echo $__env->make('layouts.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                 </div>
 
-
+                <div class="header-right">
+                    <div class="icon-search-menu"><i class="wicon fa fa-search"></i></div>
+                    <div class="yolo-search-wrapper">
+                        <form action="<?php echo e(route('search')); ?>" autocomplete="off">
+                            <input id="search-ajax" placeholder="Enter keyword to search" type="search"  name="s"/>
+                            <button class="submit search-button-custom"><i class="fa fa-search"></i></button>
+                            <button class="close"><i class="pe-7s-close"></i></button>
+                        </form>
+                    </div>
+                </div>
             </div>
-
         </div>
 
     </header>
@@ -97,10 +104,8 @@
                                     <figure><img src="/images/main_slider/<?php echo e($item->src_path); ?>" alt="polygon-slider-8"/></figure>
                                 </div>
                             </div>
-
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                 </div>
             </div>
         </div>
@@ -163,6 +168,7 @@
 
 
 
+        <!-- .mv-site-->
         <div class="div-box">
             <footer id="yolo-footer-wrapper">
                 <div class="yolo-footer-wrapper footer-6">
@@ -172,37 +178,30 @@
                                 <div class="col-md-4 col-sm-6">
                                     <div class="footer-col footer-1-col-1">
                                         <h2><a href="<?php echo e(route('main')); ?>" class="logo"><img src="/Site/images/logo/logo_pvb3.svg" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full"/></a></h2>
-                                        <p>We are a creative company that specializes in strategy & design. We like to create things with like – minded people who are serious about their passions.</p>
+                                        <p>Мы креативная команда специализируещиеся на создании гитар. Нам нравиться создавать их, для людей которые серьезно заботятся о своем звуке и сценическом образе.</p>
                                         <ul id="social-footer">
-                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="https://www.youtube.com/channel/UCwoQxi1q0ZCmPyn3UZ5uy0g?view_as=subscriber"><i class="fa fa-youtube"></i></a></li>
+                                            <li><a href="https://vk.com/pvbguitars"><i class="fa fa-vk"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-md-offset-4">
                                     <div class="footer-col footer-2-col-1">
-                                        <h3 class="mb-45">Contact Info</h3>
+                                        <h3 class="mb-45">Контактная информация</h3>
                                         <div class="icon-info">
-                                            <p><strong>Address</strong><br/>69 North Cleveland Street, Memphis,USA.</p><i class="fa fa-map-marker"></i>
+                                            <p><strong>Адрес</strong><br/>Россия г. Самара</p><i class="fa fa-map-marker"></i>
                                         </div>
                                         <div class="icon-info">
-                                            <p><strong>Call Us</strong><br/>(123) 8111 9210 (Or)<br/>(012) 1111 6868</p><i class="fa fa-phone"></i>
+                                            <p><strong>Телефон</strong><br/>8(909)365-44-40<br/></p><i class="fa fa-phone"></i>
                                         </div>
                                         <div class="icon-info">
-                                            <p><strong>Email Us</strong><br/>Yolo@support.com</p><i class="fa fa-envelope"></i>
+                                            <p><strong>Email</strong><br/>pavebez@yandex.ru</p><i class="fa fa-envelope"></i>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </footer>
         </div>
@@ -210,7 +209,7 @@
     </div>
 
 </div>
-<!-- .mv-site-->
+
 
 
 

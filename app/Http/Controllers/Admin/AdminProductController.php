@@ -38,7 +38,7 @@ class AdminProductController extends Controller
     public function show_products (Request $request)
     {
         $data = new Product;
-        $data = $data->orderBy('created_at', 'DESC');
+        $data = $data->withTrashed()->orderBy('created_at', 'DESC');
         $query = [];
         //Фильтры
         if ($request->has('title'))
@@ -64,7 +64,7 @@ class AdminProductController extends Controller
     public function show_editproduct (Request $request)
     {
         $input = $request->route()->parameter('alias');
-        $product = Product::where('alias', $input)->firstOrFail();
+        $product = Product::withTrashed()->where('alias', $input)->firstOrFail();
         $product->show_editproduct($input);
         return view('Admin.Products.addproduct',['product' => $product]);
     }
@@ -90,6 +90,25 @@ class AdminProductController extends Controller
         $input = $request->route()->parameter('alias');
         $product = Product::all()->where('alias', $input)->first();
         $susses = $product->delete();
+
+        if($susses){
+            Session::flash('success', "Данные успешно удалены");
+            return redirect()->back();
+        }else
+        {
+            Session::flash('message', "Данные не удалены");
+            return redirect()->back();
+        }
+    }
+
+    public  function restoreproduct (Request $request)
+
+    {
+        $input = $request->route()->parameter('alias');
+
+        $product = Product::withTrashed()->where('alias', $input)->first();
+
+        $susses = $product->restore();
 
         if($susses){
             Session::flash('success', "Данные успешно удалены");

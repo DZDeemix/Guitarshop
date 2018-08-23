@@ -41,7 +41,7 @@ class AdminPostController extends Controller
     public function show_posts (Request $request)
     {
         $data = new Post;
-        $data = $data->orderBy('created_at', 'DESC');
+        $data = $data->withTrashed()->orderBy('created_at', 'DESC');
 
         $query = [];
 
@@ -93,6 +93,19 @@ class AdminPostController extends Controller
     {
         $input = $request->route()->parameter('alias');
         $susses = Post::all()->where('alias', $input)->first()->delete();
+
+        if($susses){
+            Session::flash('success', "Данные успешно удалены");
+            return redirect()->back();
+        }else{
+            Session::flash('message', "Данные не удалены");
+            return redirect()->back();
+        }
+    }
+    public  function restorepost (Request $request)
+    {
+        $input = $request->route()->parameter('alias');
+        $susses = Post::withTrashed()->where('alias', $input)->first()->restore();
 
         if($susses){
             Session::flash('success', "Данные успешно удалены");

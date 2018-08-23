@@ -70,8 +70,14 @@
                         @foreach($data as $item)
                         <tr class="odd gradeX">
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->product->title }}</td>
+                            @if($item->product->trashed())
+                                <td>{{ $item->product->title }}<br><span class="text-danger">{{'товар удален'}}</span></td>
+                            @else
+                                <td>{{ $item->product->title}}</td>
+                            @endif
+
                             <td>{{ $item->guest->email }}</td>
+
                             <td class="word">{{ $item->content }}</td>
                             <td class="minwidth"><span hidden>{{ $item->status }}</span>
                                 <form method="POST"  id="{{$item->id}}"  action="{{ route('admin_change_status_order', $item->id) }}" enctype="multipart/form-data">

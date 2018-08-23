@@ -4,17 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends BaseModel
 {
-
+    use SoftDeletes;
     public $table = 'products';
     public $pathdir = '/images/gallery_products/';
     public $pathdircover = '/images/cover_products/';
     public $big_title = '';
     public $submint_action = '';
     public $param = ['alias'=>''];
-
+    protected $dates = ['deleted_at'];
 
 
     public function gallery()

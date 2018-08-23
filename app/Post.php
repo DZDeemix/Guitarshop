@@ -3,14 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends BaseModel
 {
+    use SoftDeletes;
     public $pathdircover = '/images/coves_posts/';
 
     public $big_title = '';
     public $submint_action = '';
     public $param = ['alias'=>''];
+    protected $dates = ['deleted_at'];
 
     public function addpost($request){
 

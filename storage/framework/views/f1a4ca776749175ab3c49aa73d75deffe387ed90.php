@@ -75,11 +75,19 @@
                                             <span class="glyphicon glyphicon-edit">Edit</span>
                                         </div>
                                     </a>
+                                    <?php if(!$item->trashed()): ?>
                                     <a href="<?php echo e(route('admin_delete_product', ['alias' => $item->alias])); ?>">
                                         <div class="delete-modal btn btn-danger btn-block">
-                                            <span class="glyphicon glyphicon-trash">Delete</span>
+                                            <span class="glyphicon glyphicon-trash">Удалить</span>
                                         </div>
                                     </a>
+                                        <?php else: ?>
+                                        <a href="<?php echo e(route('admin_restore_product', ['alias' => $item->alias])); ?>">
+                                            <div class="delete-modal btn btn-danger btn-block">
+                                                <span class="glyphicon glyphicon-trash">Восстановить</span>
+                                            </div>
+                                        </a>
+                                        <?php endif; ?>
                                 </div>
                             </td>
 

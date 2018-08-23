@@ -66,8 +66,14 @@
                         <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr class="odd gradeX">
                             <td><?php echo e($item->id); ?></td>
-                            <td><?php echo e($item->product->title); ?></td>
+                            <?php if($item->product->trashed()): ?>
+                                <td><?php echo e($item->product->title); ?><br><span class="text-danger"><?php echo e('товар удален'); ?></span></td>
+                            <?php else: ?>
+                                <td><?php echo e($item->product->title); ?></td>
+                            <?php endif; ?>
+
                             <td><?php echo e($item->guest->email); ?></td>
+
                             <td class="word"><?php echo e($item->content); ?></td>
                             <td class="minwidth"><span hidden><?php echo e($item->status); ?></span>
                                 <form method="POST"  id="<?php echo e($item->id); ?>"  action="<?php echo e(route('admin_change_status_order', $item->id)); ?>" enctype="multipart/form-data">

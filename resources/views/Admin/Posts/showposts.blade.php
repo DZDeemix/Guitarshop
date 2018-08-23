@@ -80,12 +80,19 @@
                                             <span class="glyphicon glyphicon-edit">Edit</span>
                                         </div>
                                     </a>
+                                    @if(!$item->trashed())
                                     <a href="{{route('admin_delete_post', ['alias' => $item->alias]) }}">
                                         <div class="delete-modal btn btn-danger btn-block">
                                             <span class="glyphicon glyphicon-trash">Delete</span>
                                         </div>
                                     </a>
-
+                                    @else
+                                        <a href="{{route('admin_restore_post', ['alias' => $item->alias]) }}">
+                                            <div class="delete-modal btn btn-danger btn-block">
+                                                <span class="glyphicon glyphicon-trash">Restore</span>
+                                            </div>
+                                        </a>
+                                        @endif
                                 </td>
 
                             </tr>

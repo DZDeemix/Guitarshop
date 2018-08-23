@@ -49,6 +49,7 @@ Route::group(['prefix'=>'admin','middleware'=>['web','auth']], function (){
     Route::get('/post/edit/{alias}', ['uses'=>'Admin\AdminPostController@show_editpost', 'as'=>'admin_edit_post_show']);
     Route::post('/post/edit/{alias}', ['uses'=>'Admin\AdminPostController@editpost', 'as'=>'admin_edit_post']);
     Route::get('/post/delete/{alias}', ['uses'=>'Admin\AdminPostController@deletepost', 'as'=>'admin_delete_post']);
+    Route::get('/post/restore/{alias}', ['uses'=>'Admin\AdminPostController@restorepost', 'as'=>'admin_restore_post']);
 
     //Маршруты для продуктов
     Route::get('/product/add', ['uses'=>'Admin\AdminProductController@show_addproduct', 'as'=>'admin_add_product_show']);
@@ -57,6 +58,7 @@ Route::group(['prefix'=>'admin','middleware'=>['web','auth']], function (){
     Route::get('/product/edit/{alias}', ['uses'=>'Admin\AdminProductController@show_editproduct', 'as'=>'admin_edit_product_show']);
     Route::post('/product/edit/{alias}', ['uses'=>'Admin\AdminProductController@editproduct', 'as'=>'admin_edit_product']);
     Route::get('/product/delete/{alias}', ['uses'=>'Admin\AdminProductController@deleteproduct', 'as'=>'admin_delete_product']);
+    Route::get('/product/restore/{alias}', ['uses'=>'Admin\AdminProductController@restoreproduct', 'as'=>'admin_restore_product']);
     Route::post('/product/img', ['uses'=>'Admin\AdminProductController@img', 'as'=>'admin_delete_img']);
 
     //Маршруты для заказов

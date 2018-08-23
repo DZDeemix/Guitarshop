@@ -108,11 +108,11 @@ a.active {
   outline: none;
 }
 a:hover {
-  color: #815523;
+  color: #94da46;
 }
 a:focus,
 a.active {
-  color: #815523;
+  color: #94da46;
 }
 input,
 textarea,
@@ -3621,6 +3621,7 @@ recent-news
     left: 15px;
     top: 0;
     z-index: 1;
+    width: 30%;
   }
 }
 .recent-news-home_4 .recent-news-container article .post-thumbnail {
@@ -12865,8 +12866,8 @@ book-service
     width: 100%;
   }
   body .mobile-menu .header-right {
-    display: none;
-  }
+
+}
   body .yolo-site .cart-form .button-cart > div {
     width: 100%;
   }
@@ -13438,7 +13439,8 @@ book-service
   padding-left: 0;
 }
 .header .header-left nav {
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 .header .container-inner {
   display: inline-block;
@@ -13458,7 +13460,8 @@ book-service
   display: inline-block;
 }
 .header .main-nav-wrapper {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 .main-nav > .nav > li {
   display: inline-block;
@@ -14647,21 +14650,22 @@ header.header.yolo-header-style-4 .header-sidebar .form-input a {
 }
 .yolo-header-style-8 .header-bottom {
   background-color: transparent;
-  padding: 20px 50px;
+  padding: 0 50px;
 }
 .yolo-header-style-8 .header-left {
   text-align: center;
+  display: flex;
 }
 .yolo-header-style-8 .header-left #primary-menu {
   text-align: center;
   width: auto;
 }
 .yolo-header-style-8 .header-logo {
-  display: inline-block;
+  /*display: inline-block;
   left: 0;
   position: absolute;
   top: -10px;
-  padding: 0;
+  padding: 0;*/
 }
 .yolo-header-style-8 .header-right a {
   position: absolute;
@@ -14737,7 +14741,7 @@ header.header.yolo-header-style-4 .header-sidebar .form-input a {
   border-top: 1px solid #eee;
 }
 .yolo-header-style-10 .header-logo {
-  padding: 40px 0;
+  padding: 20px 0;
   text-align: center;
 }
 .yolo-header-style-10 #primary-menu > .nav > li > a {
@@ -14750,12 +14754,7 @@ header.header.yolo-header-style-4 .header-sidebar .form-input a {
   color: #94da46;
 }
 .yolo-header-style-10 .header-right {
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  text-align: right;
-  top: 0;
-  padding-top: 10px;
+  color: black;
 }
 .yolo-header-style-10 .header-right > div {
   display: inline-block;
@@ -14799,7 +14798,6 @@ header.header.yolo-header-style-4 .header-sidebar .form-input a {
   margin-top: 45vh;
   width: 80vw;
   border-bottom: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 3px;
   font-size: 16px;
 }
 .yolo-search-wrapper button.close {
@@ -14819,27 +14817,27 @@ header.header.yolo-header-style-4 .header-sidebar .form-input a {
   color: #fff;
 }
 body header.header .mobile-menu {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  display: inline-block;
-  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
 }
 body header.header .mobile-menu .col-3 {
-  width: 33.33%;
-  float: left;
+
+
 }
 body header.header .mobile-menu a[href="#primary-menu"] {
   display: inline-block;
-  padding: 15px 30px;
-  font-size: 20px;
+  padding: 20px 30px;
+  font-size: 30px;
 }
 body header.header .mobile-menu .header-right {
   padding-right: 20px;
 }
-body header.header .mobile-menu .header-right > div {
-  display: inline-block;
-  padding: 12px 20px;
-  margin: 0;
+body header.header .mobile-menu .header-right > div  {
+    display: inline-block;
+    padding: 20px 20px;
+    margin: 0;
+    font-size: 30px;
 }
 body header.header .mobile-menu .header-right .shopping-cart-wrapper .widget_shopping_cart_content .widget_shopping_cart_icon > i.wicon {
   font-size: 35px;
@@ -14871,7 +14869,7 @@ html.mm-opening .mm-slideout {
 #mm-primary-menu .mm-close::before {
   border: medium none;
   content: "\e681";
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Pe-icon-7-stroke';
   font-size: 20px;
   left: -30px;
   position: absolute;
@@ -15525,4 +15523,22 @@ div.custom-pagination ul {
 input[type="submit"] {
   font-family: FontAwesome;
   font-size: 1.3333333333333333em;
+}
+
+.header-right{
+   font-size: 1.5em;
+   display: flex;
+   align-items: center;
+   color: white;
+   padding-right: 8px;
+ }
+.header-right-search {
+  padding-top: 10px;
+}
+
+
+.search-button-custom {
+  background: transparent;
+  border: none;
+  color: #fff;
 }

@@ -15,7 +15,8 @@ class Page extends BaseModel
     public $page_name = [   1 => 'Главная',
                             2 => 'Страница товаров',
                             3 => 'Страница постов',
-                            4 => 'Страница о нас'];
+                            4 => 'Страница о нас',
+                            5 => 'Страница поиска'];
     public $page_id = 0;
     protected $table = 'pages';
     static $pathdir = '/images/pages/';

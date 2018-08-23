@@ -490,7 +490,7 @@ $(document).ready(function(){
     $('#primary-menu').mmenu({
         extensions: ['effect-slide-menu', 'pageshadow'],
         navbar: {
-            title: 'Menu'
+            title: 'Меню'
         },
         navbars: [
             {

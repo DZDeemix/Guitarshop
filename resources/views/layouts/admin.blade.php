@@ -119,16 +119,19 @@
                         <a href="#">Настройки страниц<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ route('admin_show_page', ['id' => 1]) }}"><i class="fa fa-edit fa-fw"></i>Главная</a>
+                                <a href="{{ route('admin_show_page', ['id' => 1]) }}"><i class="fa fa-wrench fa-fw"></i>Главная</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin_show_page', ['id' => 2]) }}"><i class="fa fa-table fa-fw"></i>Страница товаров</a>
+                                <a href="{{ route('admin_show_page', ['id' => 2]) }}"><i class="fa fa-wrench fa-fw"></i>Страница товаров</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin_show_page', ['id' => 3]) }}"><i class="fa fa-table fa-fw"></i>Страница постов</a>
+                                <a href="{{ route('admin_show_page', ['id' => 3]) }}"><i class="fa fa-wrench fa-fw"></i>Страница постов</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin_show_page', ['id' => 4]) }}"><i class="fa fa-table fa-fw"></i>Страница о нас</a>
+                                <a href="{{ route('admin_show_page', ['id' => 4]) }}"><i class="fa fa-wrench fa-fw"></i>Страница о нас</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin_show_page', ['id' => 5]) }}"><i class="fa fa-wrench fa-fw"></i>Страница поиска</a>
                             </li>
 
                         </ul>

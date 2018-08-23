@@ -10,11 +10,8 @@
         <div class="col-lg-12">
             <h1 class="page-header">Список гостей</h1>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-
     <div class="row">
-
                 <div class="panel-body">
                     <table  width="100%" class="table table-striped table-bordered table-hover display nowrap" >
                         <thead>
@@ -23,31 +20,23 @@
                             <th >email</th>
                             <th >Дата создания</th>
                             <th >Дата обновления</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
-
                         <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr class="odd gradeX">
                             <td><?php echo e($item->name); ?></td>
                             <td><?php echo e($item->email); ?></td>
                             <td><?php echo e($item->created_utc); ?></td>
                             <td><?php echo e($item->updated_utc); ?></td>
-
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
                         </tbody>
                     </table>
                     <?php echo e($data->links()); ?>
 
                 </div>
-        
     </div>
-
 <?php $__env->stopSection(); ?>
 
 
